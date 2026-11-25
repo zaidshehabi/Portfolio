@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zaidshehabi.github.io/Portfolio/sitemap.xml

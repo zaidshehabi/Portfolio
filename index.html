@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Zaid Al Shehabi · Websites, web apps and networks</title>
+  <meta name="description" content="Zaid Al Shehabi builds websites and web apps in Arabic and English, from the database to the design, and looks after them afterwards. Informatics engineering student (networks) at the University of Aleppo.">
+  <meta name="theme-color" content="#0b0c0e">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Zaid Al Shehabi · Websites, web apps and networks">
+  <meta property="og:description" content="Websites and web apps in Arabic and English, from the database to the design. The biggest runs a platform for more than 500 scouts.">
+  <meta property="og:url" content="https://zaidshehabi.github.io/Portfolio/">
+  <meta property="og:image" content="https://zaidshehabi.github.io/Portfolio/share.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://zaidshehabi.github.io/Portfolio/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js');try{var t=(/[?&]theme=(light|dark)/.exec(location.search)||[])[1]||localStorage.getItem('theme');if(t==='light')document.documentElement.dataset.theme='light'}catch(e){}</script>
+  <script src="js/lang.js"></script>
+</head>
+<body>
+  <!-- deal: service page · hero split · palette cool-grey-cobalt (dark) · type Schibsted Grotesk + IBM Plex Sans Arabic · effect: full-page network graph that answers the pointer · motion: hero entrance, scroll unveiling, hovers, theme morph, language cross-fade -->
+  <a class="skip" href="#main"><span data-lang="en">Skip to content</span><span data-lang="ar">تخطَّ إلى المحتوى</span></a>
+  <canvas class="net" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <div class="bar">
+      <nav class="nav" aria-label="Main">
+        <a href="#hero" class="nav-home" aria-label="Top"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M19 19h26L20 45h25" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="square"/></svg></a>
+        <a href="#about"><svg class="nav-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span data-lang="en">About</span><span data-lang="ar">عني</span></a>
+        <a href="#built"><svg class="nav-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span data-lang="en">Work</span><span data-lang="ar">أعمالي</span></a>
+        <a href="#teaching"><svg class="nav-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10.5V16c3 2.2 9 2.2 12 0v-5.5"/></svg><span data-lang="en">Experience</span><span data-lang="ar">الخبرة</span></a>
+        <a href="#contact"><svg class="nav-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12Z"/></svg><span data-lang="en">Contact</span><span data-lang="ar">تواصل</span></a>
+        <span class="nav-pill" aria-hidden="true"></span>
+      </nav>
+      <span class="bar-sep" aria-hidden="true"></span>
+      <div class="head-actions">
+        <button id="theme-toggle" type="button" aria-label="Switch to light mode">
+          <svg class="tt" viewBox="0 0 24 24" aria-hidden="true">
+            <mask id="tt-cut"><rect width="24" height="24" fill="#fff"/><circle class="tt-bite" cx="17" cy="7" r="6" fill="#000"/></mask>
+            <circle class="tt-core" cx="12" cy="12" r="5" fill="currentColor" mask="url(#tt-cut)"/>
+            <g class="tt-rays" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 1.5v2.2M12 20.3v2.2M1.5 12h2.2M20.3 12h2.2M4.6 4.6l1.5 1.5M17.9 17.9l1.5 1.5M4.6 19.4l1.5-1.5M17.9 6.1l1.5-1.5"/></g>
+            <g class="tt-stars" fill="currentColor"><circle cx="19.5" cy="4" r=".9"/><circle cx="21.5" cy="9" r=".6"/></g>
+          </svg>
+        </button>
+        <button id="lang-toggle" type="button" aria-label="التبديل إلى العربية">
+          <span data-lang="en" lang="ar"><span class="lg-full">العربية</span><span class="lg-short">عربي</span></span>
+          <span data-lang="ar" lang="en"><span class="lg-full">English</span><span class="lg-short">EN</span></span>
+        </button>
+      </div>
+      <span class="progress" aria-hidden="true"></span>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section id="hero">
+      <canvas class="net" aria-hidden="true"></canvas>
+      <div class="wrap hero-grid" data-enter>
+        <div class="hero-text">
+          <p class="status">
+            <span data-lang="en">Available for freelance work</span>
+            <span data-lang="ar">متاح للعمل الحر</span>
+          </p>
+          <h1>
+            <span data-lang="en">Zaid Al Shehabi <span class="accent">Hands-on experience in information management</span></span>
+            <span data-lang="ar">زيد الشهابي <span class="accent">خبرة عملية في مجال إدارة المعلومات</span></span>
+          </h1>
+          <p class="hero-lead">
+            <span data-lang="en">I build websites and apps in Arabic and English, from the database to the design, and I keep looking after them once they are live. The biggest is a platform for more than 500 scouts, with a full chain of ranks and a record for every scout. I also set up and look after networks and tech.</span>
+            <span data-lang="ar">أبني مواقع وتطبيقات بالعربية والإنجليزية، من قاعدة البيانات حتى التصميم، ويليها المتابعة والصيانة. أكبرها منصة لإدارة أكثر من 500 كشاف وكشافة، تحوي هيكلية تراتبية وقاعدة بيانات لكل كشاف. بالإضافة إلى ما سبق، حلول ومتابعة شبكية وتقنية.</span>
+          </p>
+          <div class="btns">
+            <a class="btn btn-primary" href="mailto:zaidalshehabe@gmail.com?subject=Website%20project">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><span data-lang="en">Request a project</span><span data-lang="ar">اطلب مشروعاً</span></a>
+            <a class="btn btn-ghost" href="#built"><span data-lang="en">See my work</span><span data-lang="ar">شاهد أعمالي</span>
+              <svg class="flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+          </div>
+          <div class="facts">
+            <div><b><span data-lang="en">Full stack</span><span data-lang="ar">من الألف إلى الياء</span></b><span><span data-lang="en">database, server and design</span><span data-lang="ar">قاعدة البيانات والخادم والتصميم</span></span></div>
+            <div><b><span data-lang="en">Two languages</span><span data-lang="ar">لغتان</span></b><span><span data-lang="en">Arabic and English sites</span><span data-lang="ar">مواقع بالعربية والإنجليزية</span></span></div>
+            <div><b><span data-lang="en">4th year</span><span data-lang="ar">السنة الرابعة</span></b><span><span data-lang="en">Informatics engineering, networks</span><span data-lang="ar">الهندسة المعلوماتية، شبكات</span></span></div>
+          </div>
+        </div>
+
+        <div class="stack" aria-hidden="true">
+          <div class="window w-main">
+            <div class="window-bar"><span>github-course / github-for-everyone</span></div>
+            <img src="assets/img/course-slide-1.webp" alt="" width="1440" height="810" fetchpriority="high">
+          </div>
+          <div class="laptop w-laptop"><div class="lid"><i class="cam"></i><img src="assets/img/scout-desktop.webp" alt="" width="1881" height="973"></div><div class="base"></div></div>
+          <div class="phone w-phone" style="--screen: linear-gradient(90deg, #ecdef9, #e1c3f5 55%, #dcbaf6); --sb-ink: #000" data-light><span class="island" aria-hidden="true"><span class="call"><span class="call-av"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8.5" r="4.2"/><path d="M3.8 21a8.2 8.2 0 0 1 16.4 0Z"/></svg></span><span class="call-who"><small>WhatsApp</small><b><span data-lang="en">New client</span><span data-lang="ar">عميل جديد</span></b></span><span class="call-btn no"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 9c-3.2 0-6.2.9-8.6 2.6-.6.4-.8 1.2-.5 1.9l1 2c.3.6 1 .9 1.6.7l2.8-.9c.5-.2.9-.7.9-1.3v-1.6c1-.3 1.9-.4 2.8-.4s1.8.1 2.8.4V14c0 .6.4 1.1.9 1.3l2.8.9c.6.2 1.3-.1 1.6-.7l1-2c.3-.7.1-1.5-.5-1.9C18.2 9.9 15.2 9 12 9Z"/></svg></span><span class="call-btn yes"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></svg></span></span></span><span class="sb" aria-hidden="true"><b class="sb-time">9:41</b><span class="sb-icons"><svg class="sb-signal" viewBox="0 0 17 11" fill="currentColor"><rect y="7" width="3" height="4" rx="1"/><rect x="4.67" y="4.67" width="3" height="6.33" rx="1"/><rect x="9.33" y="2.33" width="3" height="8.67" rx="1"/><rect x="14" width="3" height="11" rx="1"/></svg><svg class="sb-wifi" viewBox="0 0 15.3 11" fill="currentColor"><path d="M7.65 2.3c2.2 0 4.2.84 5.7 2.22.16.15.4.15.56-.01l1.1-1.11a.4.4 0 0 0 0-.57A10.37 10.37 0 0 0 7.65 0 10.37 10.37 0 0 0 .64 2.83a.4.4 0 0 0 0 .57l1.1 1.1c.15.16.4.16.56.02A8.3 8.3 0 0 1 7.65 2.3Zm0 3.62c1.2 0 2.3.44 3.15 1.17.16.14.4.13.55-.02l1.1-1.1a.4.4 0 0 0-.01-.58 7.08 7.08 0 0 0-9.58 0 .4.4 0 0 0-.01.58l1.1 1.1c.15.15.4.16.55.02a4.74 4.74 0 0 1 3.15-1.17Zm2.2 2.52a.4.4 0 0 0-.02-.58 3.35 3.35 0 0 0-4.36 0 .4.4 0 0 0-.02.58l1.9 1.92c.16.16.41.16.57 0l1.93-1.92Z"/></svg><svg class="sb-batt" viewBox="0 0 27.4 13" fill="currentColor"><rect x=".5" y=".5" width="24" height="12" rx="3.8" fill="none" stroke="currentColor" opacity=".35"/><rect x="2" y="2" width="21" height="9" rx="2.5"/><path d="M26 4.4v4.2c.8-.3 1.4-1.1 1.4-2.1S26.8 4.7 26 4.4Z" opacity=".4"/></svg></span></span><img src="assets/img/scout-leader-light.webp" alt="" width="786" height="1596"><i class="home-ind" aria-hidden="true"></i></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 class="section-title" data-reveal="wipe"><span data-lang="en">About me</span><span data-lang="ar">من أنا</span></h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-text" data-reveal>
+            <!-- Zaid's own words (Arabic), translated to English 2026-11-26 -->
+            <p>
+              <span data-lang="en">I'm a university student studying informatics engineering at the University of Aleppo, specialising in networks. I volunteer in the information management track at Domains.</span>
+              <span data-lang="ar">طالب جامعي أدرس الهندسة المعلوماتية في جامعة حلب، اختصاص شبكات. متطوع في مسار إدارة المعلومات في <bdi>Domains</bdi>.</span>
+            </p>
+            <p>
+              <span data-lang="en">Most of what I've built started with a group I belong to. The scouts needed a platform to coordinate and keep track, so I built it. The volunteer committee wanted a survey, so I designed one. People kept asking me about GitHub and Claude, so I designed a training.</span>
+              <span data-lang="ar">معظم اللي بنيتو بدأ من مجموعة بنتمي لها: احتاج الكشاف لمنصة للتنسيق والمتابعة فبنيتها، وأرادت لجنة المتطوعين استبياناً فصممته، وكانوا الناس يسألوني عن <bdi>GitHub</bdi> و<bdi>Claude</bdi> فصممت تدريباً.</span>
+            </p>
+            <p>
+              <span data-lang="en">I love the small details, like how carefully this page is put together.</span>
+              <span data-lang="ar">بحب التفاصيل الصغيرة: متل ما متقنة صفحة التعريف هي.</span>
+            </p>
+            <p>
+              <span data-lang="en">Away from the screen, I'm a musician, a photographer, and an assistant leader in the scout movement since 2022.</span>
+              <span data-lang="ar">وبعيداً عن الشاشة، أنا عازف ومصور ومساعد قائد في الحركة الكشفية من سنة 2022.</span>
+            </p>
+          </div>
+          <div class="panels">
+            <div class="panel edu" data-reveal style="--i:1">
+              <h3><span data-lang="en">Education</span><span data-lang="ar">التعليم</span></h3>
+              <div class="edu-row">
+                <span class="edu-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
+                <div>
+                  <b><span data-lang="en">Bachelor's in Informatics Engineering, networks</span><span data-lang="ar">إجازة في الهندسة المعلوماتية، اختصاص الشبكات</span></b>
+                  <span class="edu-sub"><span data-lang="en">University of Aleppo · 2023 to 2028 (expected)</span><span data-lang="ar">جامعة حلب · من 2023 حتى 2028 (متوقع)</span></span>
+                </div>
+              </div>
+            </div>
+            <div class="panel" data-reveal style="--i:2">
+              <h3><span data-lang="en">Tools I use</span><span data-lang="ar">الأدوات التي أستخدمها</span></h3>
+              <ul class="tools">
+                <li><img class="ic" src="assets/icons/cisco.svg" alt="" width="24" height="20">Cisco Packet Tracer</li>
+                <li><img class="ic" src="assets/icons/html-5.svg" alt="" width="18" height="24">HTML</li>
+                <li><img class="ic" src="assets/icons/css.svg" alt="" width="24" height="24">CSS</li>
+                <li><img class="ic" src="assets/icons/javascript.svg" alt="" width="24" height="24">JavaScript</li>
+                <li><img class="ic" src="assets/icons/nodejs.svg" alt="" width="21" height="24">Node.js</li>
+                <li><img class="ic" src="assets/icons/python.svg" alt="" width="24" height="24">Python</li>
+                <li><img class="ic" src="assets/icons/c-plusplus.svg" alt="" width="22" height="24">C++</li>
+                <li><img class="ic" src="assets/icons/visual-studio-code.svg" alt="" width="24" height="24">VS Code</li>
+                <li><img class="ic ic-ink" src="assets/icons/github.svg" alt="" width="24" height="24">GitHub</li>
+                <li><img class="ic" src="assets/icons/premiere.svg" alt="" width="24" height="24">Premiere Pro</li>
+              </ul>
+            </div>
+            <div class="panel" data-reveal style="--i:3">
+              <h3><span data-lang="en">Languages</span><span data-lang="ar">اللغات</span></h3>
+              <div class="langs">
+                <button type="button" class="lang-row native" data-say="أهلاً، أنا زيد. كيف أستطيع مساعدتك؟" data-say-lang="ar">
+                  <span class="lang-name"><span data-lang="en">Arabic</span><span data-lang="ar">العربية</span></span>
+                  <small><span data-lang="en">Native</span><span data-lang="ar">اللغة الأم</span></small>
+                  <span class="cefr" aria-hidden="true"><i class="on" style="--k:0"></i><i class="on" style="--k:1"></i><i class="on" style="--k:2"></i><i class="on" style="--k:3"></i><i class="on" style="--k:4"></i><i class="on" style="--k:5"></i></span>
+                </button>
+                <button type="button" class="lang-row" data-say="Hi, I'm Zaid. How can I help?" data-say-lang="en">
+                  <span class="lang-name"><span data-lang="en">English</span><span data-lang="ar">الإنجليزية</span></span>
+                  <small>C1</small>
+                  <span class="cefr" aria-hidden="true"><i class="on" style="--k:0"></i><i class="on" style="--k:1"></i><i class="on" style="--k:2"></i><i class="on" style="--k:3"></i><i class="on" style="--k:4"></i><i style="--k:5"></i></span>
+                </button>
+                <button type="button" class="lang-row" data-say="Hallo, ich bin Zaid. Wie kann ich helfen?" data-say-lang="de">
+                  <span class="lang-name"><span data-lang="en">German</span><span data-lang="ar">الألمانية</span></span>
+                  <small>B1</small>
+                  <span class="cefr" aria-hidden="true"><i class="on" style="--k:0"></i><i class="on" style="--k:1"></i><i class="on" style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i></span>
+                </button>
+                <div class="cefr-scale" aria-hidden="true"><span>A1</span><span>A2</span><span>B1</span><span>B2</span><span>C1</span><span>C2</span></div>
+                <p class="lang-say" aria-live="polite"><span class="say-hint"><span data-lang="en">Pick a language and I'll say hello.</span><span data-lang="ar">اختر لغة وسأسلّم عليك بها.</span></span><span class="say-text"></span><i class="caret" aria-hidden="true"></i></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section id="built">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 class="section-title" data-reveal="wipe"><span data-lang="en">Work</span><span data-lang="ar">أعمالي</span></h2>
+          <p class="section-lead" data-reveal><span data-lang="en">Two web projects I built for groups I'm part of.</span><span data-lang="ar">مشروعا ويب بنيتهما لمجموعات أنتمي إليها.</span></p>
+        </div>
+
+        <article class="scout" data-reveal="card">
+          <div class="scout-top">
+            <div class="scout-intro">
+              <span class="tag"><span data-lang="en">Main project · website + Android app</span><span data-lang="ar">المشروع الأساسي · موقع وتطبيق أندرويد</span></span>
+              <h3><span data-lang="en">Scout Troop 2 app</span><span data-lang="ar">تطبيق الفوج الكشفي الثاني</span></h3>
+              <p><span data-lang="en">A website and Android app for my scout troop. Leaders give scouts XP points for activities, and anyone can open the public page to see each scout's points and history. It's in Arabic and English, and I built all of it myself, from the database to the design.</span><span data-lang="ar">موقع وتطبيق أندرويد لفرقتي الكشفية. يمنح القادة الكشافة نقاط خبرة على النشاطات، ويستطيع أي شخص أن يفتح الصفحة العامة ليرى نقاط كل كشفي وسجلّه. يعمل بالعربية والإنجليزية، وبنيته كله بنفسي من قاعدة البيانات حتى التصميم.</span></p>
+              <ul class="stack-icons" aria-label="Built with">
+                <li><img class="ic" src="assets/icons/html-5.svg" alt="" width="18" height="24">HTML</li>
+                <li><img class="ic" src="assets/icons/css.svg" alt="" width="24" height="24">CSS</li>
+                <li><img class="ic" src="assets/icons/javascript.svg" alt="" width="24" height="24">JavaScript</li>
+                <li><img class="ic" src="assets/icons/nodejs.svg" alt="" width="21" height="24">Node.js</li>
+                <li>Express</li>
+                <li><img class="ic ic-ink" src="assets/icons/render.svg" alt="" width="24" height="24">Render</li>
+                <li><img class="ic" src="assets/icons/android.svg" alt="" width="24" height="14">Android</li>
+              </ul>
+            </div>
+            <div class="scout-phone">
+              <div class="phone" style="--screen: linear-gradient(90deg, #2e0f4a, #5a2380 55%, #7432a1); --sb-ink: #fff" data-reveal="rise"><span class="island" aria-hidden="true"><span class="call"><span class="call-av"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8.5" r="4.2"/><path d="M3.8 21a8.2 8.2 0 0 1 16.4 0Z"/></svg></span><span class="call-who"><small>WhatsApp</small><b><span data-lang="en">New client</span><span data-lang="ar">عميل جديد</span></b></span><span class="call-btn no"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 9c-3.2 0-6.2.9-8.6 2.6-.6.4-.8 1.2-.5 1.9l1 2c.3.6 1 .9 1.6.7l2.8-.9c.5-.2.9-.7.9-1.3v-1.6c1-.3 1.9-.4 2.8-.4s1.8.1 2.8.4V14c0 .6.4 1.1.9 1.3l2.8.9c.6.2 1.3-.1 1.6-.7l1-2c.3-.7.1-1.5-.5-1.9C18.2 9.9 15.2 9 12 9Z"/></svg></span><span class="call-btn yes"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></svg></span></span></span><span class="sb" aria-hidden="true"><b class="sb-time">9:41</b><span class="sb-icons"><svg class="sb-signal" viewBox="0 0 17 11" fill="currentColor"><rect y="7" width="3" height="4" rx="1"/><rect x="4.67" y="4.67" width="3" height="6.33" rx="1"/><rect x="9.33" y="2.33" width="3" height="8.67" rx="1"/><rect x="14" width="3" height="11" rx="1"/></svg><svg class="sb-wifi" viewBox="0 0 15.3 11" fill="currentColor"><path d="M7.65 2.3c2.2 0 4.2.84 5.7 2.22.16.15.4.15.56-.01l1.1-1.11a.4.4 0 0 0 0-.57A10.37 10.37 0 0 0 7.65 0 10.37 10.37 0 0 0 .64 2.83a.4.4 0 0 0 0 .57l1.1 1.1c.15.16.4.16.56.02A8.3 8.3 0 0 1 7.65 2.3Zm0 3.62c1.2 0 2.3.44 3.15 1.17.16.14.4.13.55-.02l1.1-1.1a.4.4 0 0 0-.01-.58 7.08 7.08 0 0 0-9.58 0 .4.4 0 0 0-.01.58l1.1 1.1c.15.15.4.16.55.02a4.74 4.74 0 0 1 3.15-1.17Zm2.2 2.52a.4.4 0 0 0-.02-.58 3.35 3.35 0 0 0-4.36 0 .4.4 0 0 0-.02.58l1.9 1.92c.16.16.41.16.57 0l1.93-1.92Z"/></svg><svg class="sb-batt" viewBox="0 0 27.4 13" fill="currentColor"><rect x=".5" y=".5" width="24" height="12" rx="3.8" fill="none" stroke="currentColor" opacity=".35"/><rect x="2" y="2" width="21" height="9" rx="2.5"/><path d="M26 4.4v4.2c.8-.3 1.4-1.1 1.4-2.1S26.8 4.7 26 4.4Z" opacity=".4"/></svg></span></span><img src="assets/img/scout-home.webp" alt="The Scout Troop 2 app home screen in dark mode, with the next activity, a countdown and shortcuts" width="786" height="1596" loading="lazy"><i class="home-ind" aria-hidden="true"></i></div>
+              <div class="phone" style="--screen: linear-gradient(90deg, #2e0f4a, #5a2380 55%, #7432a1); --sb-ink: #fff; --i: 2" data-reveal="rise"><span class="island" aria-hidden="true"><span class="call"><span class="call-av"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8.5" r="4.2"/><path d="M3.8 21a8.2 8.2 0 0 1 16.4 0Z"/></svg></span><span class="call-who"><small>WhatsApp</small><b><span data-lang="en">New client</span><span data-lang="ar">عميل جديد</span></b></span><span class="call-btn no"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 9c-3.2 0-6.2.9-8.6 2.6-.6.4-.8 1.2-.5 1.9l1 2c.3.6 1 .9 1.6.7l2.8-.9c.5-.2.9-.7.9-1.3v-1.6c1-.3 1.9-.4 2.8-.4s1.8.1 2.8.4V14c0 .6.4 1.1.9 1.3l2.8.9c.6.2 1.3-.1 1.6-.7l1-2c.3-.7.1-1.5-.5-1.9C18.2 9.9 15.2 9 12 9Z"/></svg></span><span class="call-btn yes"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></svg></span></span></span><span class="sb" aria-hidden="true"><b class="sb-time">9:41</b><span class="sb-icons"><svg class="sb-signal" viewBox="0 0 17 11" fill="currentColor"><rect y="7" width="3" height="4" rx="1"/><rect x="4.67" y="4.67" width="3" height="6.33" rx="1"/><rect x="9.33" y="2.33" width="3" height="8.67" rx="1"/><rect x="14" width="3" height="11" rx="1"/></svg><svg class="sb-wifi" viewBox="0 0 15.3 11" fill="currentColor"><path d="M7.65 2.3c2.2 0 4.2.84 5.7 2.22.16.15.4.15.56-.01l1.1-1.11a.4.4 0 0 0 0-.57A10.37 10.37 0 0 0 7.65 0 10.37 10.37 0 0 0 .64 2.83a.4.4 0 0 0 0 .57l1.1 1.1c.15.16.4.16.56.02A8.3 8.3 0 0 1 7.65 2.3Zm0 3.62c1.2 0 2.3.44 3.15 1.17.16.14.4.13.55-.02l1.1-1.1a.4.4 0 0 0-.01-.58 7.08 7.08 0 0 0-9.58 0 .4.4 0 0 0-.01.58l1.1 1.1c.15.15.4.16.55.02a4.74 4.74 0 0 1 3.15-1.17Zm2.2 2.52a.4.4 0 0 0-.02-.58 3.35 3.35 0 0 0-4.36 0 .4.4 0 0 0-.02.58l1.9 1.92c.16.16.41.16.57 0l1.93-1.92Z"/></svg><svg class="sb-batt" viewBox="0 0 27.4 13" fill="currentColor"><rect x=".5" y=".5" width="24" height="12" rx="3.8" fill="none" stroke="currentColor" opacity=".35"/><rect x="2" y="2" width="21" height="9" rx="2.5"/><path d="M26 4.4v4.2c.8-.3 1.4-1.1 1.4-2.1S26.8 4.7 26 4.4Z" opacity=".4"/></svg></span></span><img src="assets/img/scout-scouts.webp" alt="The scout list in dark mode, grouped by patrol, with each scout's XP points" width="786" height="1596" loading="lazy"><i class="home-ind" aria-hidden="true"></i></div>
+            </div>
+          </div>
+          <ul class="features" data-reveal="list">
+            <li><b><span data-lang="en">XP points</span><span data-lang="ar">نقاط الخبرة</span></b>
+              <span><span data-lang="en">Leaders award points with a note. Each scout's history is public.</span><span data-lang="ar">يمنح القادة النقاط مع ملاحظة، وسجلّ كل كشفي متاح للجميع.</span></span></li>
+            <li><b><span data-lang="en">Roles and privacy</span><span data-lang="ar">الصلاحيات والخصوصية</span></b>
+              <span><span data-lang="en">Six account roles. Leaders only see private details for their own troop.</span><span data-lang="ar">ستة أنواع من الحسابات، ولا يرى القائد التفاصيل الخاصة إلا لفرقته.</span></span></li>
+            <li><b><span data-lang="en">Weekly reports</span><span data-lang="ar">التقارير الأسبوعية</span></b>
+              <span><span data-lang="en">One report per troop every Saturday, plus camps and trips with photos.</span><span data-lang="ar">تقرير لكل فرقة كل سبت، إضافة إلى المخيمات والرحلات مع صورها.</span></span></li>
+            <li><b><span data-lang="en">Musical team</span><span data-lang="ar">الفرقة الموسيقية</span></b>
+              <span><span data-lang="en">Its own points, practice attendance and a library of marches.</span><span data-lang="ar">نقاط خاصة بها، وتسجيل حضور التدريبات، ومكتبة للمارشات.</span></span></li>
+            <li><b><span data-lang="en">Notifications</span><span data-lang="ar">الإشعارات</span></b>
+              <span><span data-lang="en">Push notifications for new posts, and an Android app that asks to update itself.</span><span data-lang="ar">إشعارات فورية عند كل منشور جديد، وتطبيق أندرويد يطلب التحديث بنفسه.</span></span></li>
+            <li><b><span data-lang="en">Two languages</span><span data-lang="ar">لغتان</span></b>
+              <span><span data-lang="en">Arabic by default, English with one tap.</span><span data-lang="ar">العربية افتراضياً، والإنجليزية بلمسة واحدة.</span></span></li>
+          </ul>
+        </article>
+
+        <article class="project xp" data-reveal="card">
+          <div class="project-body">
+            <span class="tag"><span data-lang="en">Form + results page</span><span data-lang="ar">نموذج وصفحة نتائج</span></span>
+            <h3><span data-lang="en">XP points feedback form</span><span data-lang="ar">نموذج تقييم نظام النقاط</span></h3>
+            <p><span data-lang="en">A short Arabic form that asks volunteers what they think of the XP points system. Answers go straight into a Google Sheet, and the committee reads them on a password-protected results page.</span><span data-lang="ar">نموذج عربي قصير يسأل المتطوعين عن رأيهم في نظام النقاط. تذهب الإجابات مباشرة إلى جدول <bdi>Google</bdi>، وتقرؤها اللجنة في صفحة نتائج محميّة بكلمة مرور.</span></p>
+            <ul class="checks">
+              <li><span data-lang="en">Made for phones first</span><span data-lang="ar">مصمَّم للهاتف أولاً</span></li>
+              <li><span data-lang="en">Light and dark mode</span><span data-lang="ar">وضع فاتح وداكن</span></li>
+            </ul>
+            <ul class="stack-icons" aria-label="Built with">
+              <li><img class="ic" src="assets/icons/html-5.svg" alt="" width="18" height="24">HTML</li>
+              <li><img class="ic" src="assets/icons/javascript.svg" alt="" width="24" height="24">JavaScript</li>
+              <li><img class="ic" src="assets/icons/google-sheets.svg" alt="" width="18" height="24">Google Sheets</li>
+              <li><img class="ic ic-ink" src="assets/icons/render.svg" alt="" width="24" height="24">Render</li>
+            </ul>
+          </div>
+          <div class="project-media media-phone">
+            <div class="phone site" style="--screen: linear-gradient(90deg, #2231b7, #1e2ca7 55%, #232b6a); --sb-ink: #fff" data-reveal="rise"><span class="island" aria-hidden="true"><span class="call"><span class="call-av"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8.5" r="4.2"/><path d="M3.8 21a8.2 8.2 0 0 1 16.4 0Z"/></svg></span><span class="call-who"><small>WhatsApp</small><b><span data-lang="en">New client</span><span data-lang="ar">عميل جديد</span></b></span><span class="call-btn no"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 9c-3.2 0-6.2.9-8.6 2.6-.6.4-.8 1.2-.5 1.9l1 2c.3.6 1 .9 1.6.7l2.8-.9c.5-.2.9-.7.9-1.3v-1.6c1-.3 1.9-.4 2.8-.4s1.8.1 2.8.4V14c0 .6.4 1.1.9 1.3l2.8.9c.6.2 1.3-.1 1.6-.7l1-2c.3-.7.1-1.5-.5-1.9C18.2 9.9 15.2 9 12 9Z"/></svg></span><span class="call-btn yes"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></svg></span></span></span><span class="sb" aria-hidden="true"><b class="sb-time">9:41</b><span class="sb-icons"><svg class="sb-signal" viewBox="0 0 17 11" fill="currentColor"><rect y="7" width="3" height="4" rx="1"/><rect x="4.67" y="4.67" width="3" height="6.33" rx="1"/><rect x="9.33" y="2.33" width="3" height="8.67" rx="1"/><rect x="14" width="3" height="11" rx="1"/></svg><svg class="sb-wifi" viewBox="0 0 15.3 11" fill="currentColor"><path d="M7.65 2.3c2.2 0 4.2.84 5.7 2.22.16.15.4.15.56-.01l1.1-1.11a.4.4 0 0 0 0-.57A10.37 10.37 0 0 0 7.65 0 10.37 10.37 0 0 0 .64 2.83a.4.4 0 0 0 0 .57l1.1 1.1c.15.16.4.16.56.02A8.3 8.3 0 0 1 7.65 2.3Zm0 3.62c1.2 0 2.3.44 3.15 1.17.16.14.4.13.55-.02l1.1-1.1a.4.4 0 0 0-.01-.58 7.08 7.08 0 0 0-9.58 0 .4.4 0 0 0-.01.58l1.1 1.1c.15.15.4.16.55.02a4.74 4.74 0 0 1 3.15-1.17Zm2.2 2.52a.4.4 0 0 0-.02-.58 3.35 3.35 0 0 0-4.36 0 .4.4 0 0 0-.02.58l1.9 1.92c.16.16.41.16.57 0l1.93-1.92Z"/></svg><svg class="sb-batt" viewBox="0 0 27.4 13" fill="currentColor"><rect x=".5" y=".5" width="24" height="12" rx="3.8" fill="none" stroke="currentColor" opacity=".35"/><rect x="2" y="2" width="21" height="9" rx="2.5"/><path d="M26 4.4v4.2c.8-.3 1.4-1.1 1.4-2.1S26.8 4.7 26 4.4Z" opacity=".4"/></svg></span></span><img src="assets/img/xp-form.webp" alt="The XP points feedback form in dark mode, with a 1 to 5 rating question" width="786" height="1430" loading="lazy"><span class="safari" aria-hidden="true"><span class="pill"><span class="aa">a<b>A</b></span><span class="url">xp-feedback.onrender.com</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v5h-5"/></svg></span><i class="home-ind" aria-hidden="true"></i></span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section id="teaching">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 class="section-title" data-reveal="wipe"><span data-lang="en">Teaching and experience</span><span data-lang="ar">التدريب والخبرة</span></h2>
+        </div>
+
+        <article class="course">
+          <div class="course-text" data-reveal>
+            <span class="tag"><span data-lang="en">A course I made and teach</span><span data-lang="ar">دورة أعددتها وأقدّمها</span></span>
+            <h3><bdi>GitHub + Claude</bdi></h3>
+            <p class="course-sub"><span data-lang="en">AI literacy and working with GitHub, for people outside IT</span><span data-lang="ar">محو أمية الذكاء الاصطناعي والتعامل مع <bdi>GitHub</bdi> لغير المتخصصين</span></p>
+            <p><span data-lang="en">People ask Claude to make a web page, save it on GitHub, go back to any version and put it online. All of it from the browser, with no coding. I teach in Arabic and keep the English terms, and I made the slides, a presenter script and a study guide.</span><span data-lang="ar">يطلب المشاركون من <bdi>Claude</bdi> صفحة ويب، ثم يحفظونها على <bdi>GitHub</bdi> ويعودون إلى أي نسخة منها وينشرونها على الإنترنت. كل ذلك من المتصفح ومن دون برمجة. أشرح بالعربية مع إبقاء المصطلحات بالإنجليزية، وأعددت الشرائح ونصاً للمقدّم ودليلاً للدراسة.</span></p>
+            <dl class="course-facts">
+              <div><dt>35</dt><dd><span data-lang="en">slides</span><span data-lang="ar">شريحة</span></dd></div>
+              <div><dt><bdi>90–120</bdi></dt><dd><span data-lang="en">minutes</span><span data-lang="ar">دقيقة</span></dd></div>
+              <div><dt>0</dt><dd><span data-lang="en">code to write</span><span data-lang="ar">سطر برمجة</span></dd></div>
+            </dl>
+          </div>
+          <div class="deck" data-reveal="deck">
+            <div class="deck-stage">
+              <img class="slide" src="assets/img/course-slide-1.webp" alt="Slide 1: GitHub + Claude, save your work, go back to any version and publish it" width="1440" height="810" loading="lazy">
+              <img class="slide" src="assets/img/course-slide-2.webp" alt="Slide 2: the session map, from Intro to Wrap-up, about 90 to 120 minutes" width="1440" height="810" loading="lazy">
+              <img class="slide" src="assets/img/course-slide-3.webp" alt="Slide 3: Git is the camera, GitHub is the album online" width="1440" height="810" loading="lazy">
+            </div>
+            <div class="deck-dots" role="group" aria-label="Slides">
+              <button type="button" aria-pressed="true" aria-label="Slide 1">1</button>
+              <button type="button" aria-pressed="false" aria-label="Slide 2">2</button>
+              <button type="button" aria-pressed="false" aria-label="Slide 3">3</button>
+            </div>
+          </div>
+        </article>
+
+        <ol class="timeline">
+          <li data-reveal>
+            <span class="t-dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>
+            <time><span data-lang="en">July 2026 to now</span><span data-lang="ar">من تموز 2026 حتى الآن</span></time>
+            <div class="t-body">
+              <span class="t-kind"><span data-lang="en">Information management, volunteer</span><span data-lang="ar">إدارة المعلومات، تطوع</span></span>
+              <b><span data-lang="en">Volunteer, information management track at Domains</span><span data-lang="ar">متطوع في مسار إدارة المعلومات في <bdi>Domains</bdi></span></b>
+              <span><span data-lang="en">I fix IT problems, help with technical tasks and give training sessions.</span><span data-lang="ar">أحلّ المشكلات التقنية وأساعد في المهام التقنية وأقدّم جلسات تدريبية.</span></span>
+            </div>
+          </li>
+          <li data-reveal>
+            <span class="t-dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span>
+            <time><span data-lang="en">May to November 2025</span><span data-lang="ar">من أيار حتى تشرين الثاني 2025</span></time>
+            <div class="t-body">
+              <span class="t-kind"><span data-lang="en">Full-time job</span><span data-lang="ar">عمل بدوام كامل</span></span>
+              <b><span data-lang="en">Video editor and photographer, Leads</span><span data-lang="ar">محرّر فيديو ومصوّر في <bdi>Leads</bdi></span></b>
+              <span><span data-lang="en">At a marketing agency. I edited videos in Premiere Pro and took photos for clients' campaigns.</span><span data-lang="ar">في وكالة تسويق. حرّرت الفيديو على <bdi>Premiere Pro</bdi> والتقطت الصور لحملات العملاء.</span></span>
+            </div>
+          </li>
+          <li data-reveal>
+            <span class="t-dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></span>
+            <time><span data-lang="en">February to March 2023</span><span data-lang="ar">من شباط حتى آذار 2023</span></time>
+            <div class="t-body">
+              <span class="t-kind"><span data-lang="en">Relief, volunteer</span><span data-lang="ar">إغاثة، تطوع</span></span>
+              <b><span data-lang="en">Relief volunteer, Syria Trust for Development</span><span data-lang="ar">متطوع إغاثة في الأمانة السورية للتنمية</span></b>
+              <span><span data-lang="en">After the earthquake, I helped hand out food, clothes and medicine.</span><span data-lang="ar">بعد الزلزال ساعدت في توزيع الطعام والملابس والأدوية.</span></span>
+            </div>
+          </li>
+          <li data-reveal>
+            <span class="t-dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c2 3 5 4 5 8a5 5 0 0 1-10 0c0-4 3-5 5-8Z"/><path d="M12 13v8M8 21h8"/></svg></span>
+            <time><span data-lang="en">March 2022 to now</span><span data-lang="ar">من آذار 2022 حتى الآن</span></time>
+            <div class="t-body">
+              <span class="t-kind"><span data-lang="en">Leadership</span><span data-lang="ar">قيادة</span></span>
+              <b><span data-lang="en">Assistant scout leader</span><span data-lang="ar">قائد كشفي مساعد</span></b>
+              <span><span data-lang="en">I lead a troop made up of several patrols and organise its activities and events.</span><span data-lang="ar">أقود فرقة من عدة طلائع وأنظّم نشاطاتها وفعالياتها.</span></span>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact">
+      <div class="wrap">
+        <h2 class="contact-title" data-reveal="wipe"><span data-lang="en">Have a project in mind? Tell me about it.</span><span data-lang="ar">لديك مشروع في بالك؟ حدّثني عنه.</span></h2>
+        <p class="section-lead" data-reveal><span data-lang="en">A website, a web app, a form or a dashboard: email me or message me on WhatsApp. I'm also open to networking internships.</span><span data-lang="ar">موقع أو تطبيق ويب أو نموذج أو لوحة متابعة: راسلني بالبريد أو على واتساب. وأنا منفتح أيضاً على فرص التدريب في مجال الشبكات.</span></p>
+        <a class="mail" data-reveal href="mailto:zaidalshehabe@gmail.com">zaidalshehabe@gmail.com</a>
+        <a class="phone-num" data-reveal href="https://wa.me/963948990111" rel="noopener" target="_blank"><bdi>+963 948 990 111</bdi> <span class="phone-tag">WhatsApp</span></a>
+        <div class="btns" data-reveal>
+          <a class="btn btn-primary" href="mailto:zaidalshehabe@gmail.com?subject=Website%20project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><span data-lang="en">Email me</span><span data-lang="ar">راسلني</span></a>
+          <a class="btn btn-ghost" href="https://wa.me/963948990111" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25D366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/><path fill="#fff" d="M17.2 14.3c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-1.6-.8-2.7-1.4-3.7-3.2-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5l-.9-2.1c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.7.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3Z"/></svg><span data-lang="en">Message on WhatsApp</span><span data-lang="ar">راسلني على واتساب</span></a>
+          <a class="btn btn-ghost" href="https://linkedin.com/in/zaidshehabi" rel="noopener" target="_blank">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#0A66C2" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg><span data-lang="en">Open LinkedIn</span><span data-lang="ar">افتح لينكدإن</span></a>
+          <a class="btn btn-ghost" href="assets/cv/Zaid_Al_Shehabi_CV_EN.pdf" download data-lang="en">Download CV</a>
+          <a class="btn btn-ghost" href="assets/cv/Zaid_Al_Shehabi_CV_AR.pdf" download data-lang="ar">حمّل السيرة الذاتية</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span><span data-lang="en">© 2026 Zaid Al Shehabi · Aleppo, Syria</span><span data-lang="ar">© 2026 زيد الشهابي · حلب، سوريا</span></span>
+      <span><span data-lang="en">Product names and logos are trademarks of their owners.</span><span data-lang="ar">أسماء المنتجات وشعاراتها علامات تجارية لأصحابها.</span></span>
+    </div>
+  </footer>
+
+  <script src="js/network.js" defer></script>
+  <script src="js/motion.js" defer></script>
+  <script src="js/theme.js" defer></script>
+</body>
+</html>
