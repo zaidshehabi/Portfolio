@@ -1,5 +1,5 @@
 // Light / dark switch. Dark is the default; the choice is kept in localStorage "theme".
-// On click a circle opens from the button (View Transitions API); older browsers get a short colour fade.
+// On desktop a circle opens from the button (View Transitions API); phones fade through a veil in the new colour.
 (function () {
   var root = document.documentElement;
   var btn = document.getElementById('theme-toggle');
@@ -23,10 +23,9 @@
   btn.addEventListener('click', function (ev) {
     var light = root.dataset.theme !== 'light';
     if (reduce || document.hidden || running) { if (running) running.skipTransition(); apply(light); return; }
-    if (!document.startViewTransition) {
-      root.classList.add('theme-fade');
-      apply(light);
-      setTimeout(function () { root.classList.remove('theme-fade'); }, 400);
+    // phones (and browsers without View Transitions): fade through a veil in the new page colour (lang.js veilSwap)
+    if (window.veilSwap && (!document.startViewTransition || window.matchMedia('(max-width: 760px), (pointer: coarse)').matches)) {
+      window.veilSwap(light ? '#f2f3f6' : '#0b0c0e', function () { apply(light); });
       return;
     }
     var r = btn.getBoundingClientRect();

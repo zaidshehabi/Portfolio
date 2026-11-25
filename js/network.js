@@ -9,17 +9,18 @@
   var W = 0, H = 0, dpr = 1, nodes = [], packets = [], ripples = [], link = 150, raf = 0, running = false;
   var ptr = { x: -9999, y: -9999, on: false, glow: 0 }, lastY = window.scrollY;
   var R = 170; // pointer reach
-  // touch screens: the finger drives it (also while scrolling); when no finger is down a soft 'ghost' wanders so the page stays alive
-  var coarse = window.matchMedia('(pointer: coarse)').matches, touching = false, gt = Math.random() * 10, touchTimer = 0;
+  // touch screens: the finger drives it, also while scrolling
+  // phones get a calmer graph: fewer nodes and packets, a gentle touch, no wandering ghost
+  var coarse = window.matchMedia('(pointer: coarse)').matches, touching = false, touchTimer = 0, calm = false;
 
   function rand(a, b) { return a + Math.random() * (b - a); }
   function setup() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = innerWidth; H = innerHeight;
+    W = innerWidth; H = innerHeight; calm = coarse || W < 760;
+    dpr = Math.min(window.devicePixelRatio || 1, calm ? 1.5 : 2);
     canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    var count = Math.round(Math.min(110, Math.max(34, (W * H) / 15000)));
-    link = W < 700 ? 115 : 150; R = W < 700 ? 120 : 170;
+    var count = calm ? Math.round(Math.min(30, Math.max(18, (W * H) / 14000))) : Math.round(Math.min(110, Math.max(34, (W * H) / 15000)));
+    link = calm ? 105 : 150; R = calm ? 90 : 170;
     nodes = [];
     for (var i = 0; i < count; i++) {
       var bvx = rand(-.18, .18), bvy = rand(-.18, .18);
@@ -56,14 +57,8 @@
 
   function step() {
     var dy = window.scrollY - lastY; lastY = window.scrollY;
-    if (coarse && !touching) {
-      gt += .0032;
-      var gx = W * (.5 + .36 * Math.sin(gt * 1.7)), gy = H * (.46 + .3 * Math.sin(gt * 1.1 + 1));
-      if (!ptr.soft) { ptr.soft = true; if (ptr.x < -999) { ptr.x = gx; ptr.y = gy; } }
-      ptr.x += (gx - ptr.x) * .02; ptr.y += (gy - ptr.y) * .02; ptr.on = true; // eases over from where the finger left
-    }
-    var pull = ptr.soft ? .3 : 1;
-    ptr.glow += ((ptr.on ? (ptr.soft ? .5 : 1) : 0) - ptr.glow) * .08;
+    var pull = calm ? .35 : 1;
+    ptr.glow += ((ptr.on ? (calm ? .45 : 1) : 0) - ptr.glow) * .08;
     for (var i = 0; i < nodes.length; i++) {
       var n = nodes[i];
       n.y -= dy * n.depth; // parallax: deeper nodes move less
@@ -73,7 +68,7 @@
       }
       for (var k = 0; k < ripples.length; k++) {
         var rp = ripples[k], ex = n.x - rp.x, ey = n.y - rp.y, ed = Math.hypot(ex, ey);
-        if (ed > .1 && Math.abs(ed - rp.r) < 26) { var g = 2.2 * (1 - rp.r / rp.max); n.vx += ex / ed * g; n.vy += ey / ed * g; n.heat = 1; }
+        if (ed > .1 && Math.abs(ed - rp.r) < 26) { var g = (calm ? 1 : 2.2) * (1 - rp.r / rp.max); n.vx += ex / ed * g; n.vy += ey / ed * g; n.heat = 1; }
       }
       n.vx = n.vx * .93 + n.bvx * .07; n.vy = n.vy * .93 + n.bvy * .07; // ease back to the slow drift
       n.x += n.vx; n.y += n.vy; n.heat *= .965;
@@ -81,7 +76,7 @@
       if (n.y < -30) n.y = H + 30; else if (n.y > H + 30) n.y = -30;
     }
     for (var r = ripples.length - 1; r >= 0; r--) { ripples[r].r += 7; if (ripples[r].r > ripples[r].max) ripples.splice(r, 1); }
-    if (packets.length < 16 && Math.random() < .08) spawnFrom(nodes[(Math.random() * nodes.length) | 0]);
+    if (packets.length < (calm ? 5 : 16) && Math.random() < (calm ? .04 : .08)) spawnFrom(nodes[(Math.random() * nodes.length) | 0]);
   }
 
   function draw() {
@@ -143,19 +138,19 @@
   else start();
 
   if (!reduce) {
-    window.addEventListener('pointermove', function (e) { if (e.pointerType !== 'mouse') return; ptr.soft = false; ptr.x = e.clientX; ptr.y = e.clientY; ptr.on = true; }, { passive: true });
+    window.addEventListener('pointermove', function (e) { if (e.pointerType !== 'mouse') return; ptr.x = e.clientX; ptr.y = e.clientY; ptr.on = true; }, { passive: true });
     document.addEventListener('pointerleave', function () { ptr.on = false; });
     window.addEventListener('blur', function () { ptr.on = false; });
-    window.addEventListener('pointerup', function (e) { if (e.pointerType !== 'mouse' && !coarse) ptr.on = false; });
-    function touch(e) { var t = e.touches[0]; if (!t) return; touching = true; ptr.soft = false; ptr.on = true; ptr.x = t.clientX; ptr.y = t.clientY; clearTimeout(touchTimer); }
+    window.addEventListener('pointerup', function (e) { if (e.pointerType !== 'mouse' && !touching) ptr.on = false; });
+    function touch(e) { var t = e.touches[0]; if (!t) return; touching = true; ptr.on = true; ptr.x = t.clientX; ptr.y = t.clientY; clearTimeout(touchTimer); }
     window.addEventListener('touchstart', touch, { passive: true });
     window.addEventListener('touchmove', touch, { passive: true }); // keeps coming while the page scrolls under the finger
-    window.addEventListener('touchend', function () { clearTimeout(touchTimer); touchTimer = setTimeout(function () { touching = false; if (!coarse) ptr.on = false; }, 900); }, { passive: true });
+    window.addEventListener('touchend', function () { clearTimeout(touchTimer); touchTimer = setTimeout(function () { touching = false; ptr.on = false; }, 600); }, { passive: true });
     window.addEventListener('pointerdown', function (e) {
       if (e.target.closest('a, button, input, textarea, select, [role="group"]')) return; // controls keep their own click
-      ripples.push({ x: e.clientX, y: e.clientY, r: 0, max: Math.max(W, H) * .45 });
+      ripples.push({ x: e.clientX, y: e.clientY, r: 0, max: Math.max(W, H) * (calm ? .28 : .45) });
       var n = nearest(e.clientX, e.clientY);
-      for (var b = 0; b < 5 && n; b++) { var len = packets.length; spawnFrom(n); if (packets.length > len) packets[len].burst = 3; }
+      for (var b = 0; b < (calm ? 2 : 5) && n; b++) { var len = packets.length; spawnFrom(n); if (packets.length > len) packets[len].burst = 3; }
     });
   }
   var t;

@@ -268,7 +268,6 @@ html[data-theme="light"] .window { box-shadow: 0 30px 60px -30px rgba(20, 24, 40
 
 /* the switch: a circle opens from the button (View Transitions), else a quick colour fade */
 ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
-html.theme-fade, html.theme-fade * { transition: background-color .35s ease, color .35s ease, border-color .35s ease !important; }
 
 /* =================== v4: floating nav, iPhone frames, deck, timeline, unveiling =================== */
 :root { --spring: cubic-bezier(.34, 1.4, .5, 1); }
@@ -619,3 +618,9 @@ html[data-theme="light"] .net { opacity: .7; }
   .facts { grid-template-columns: 1fr; }
   .tools li { font-size: 13px; padding: 7px 10px; }
 }
+
+/* phones: theme and language switch under a veil in the page colour (lang.js), no page snapshot */
+.veil { position: fixed; inset: 0; z-index: 200; pointer-events: none; opacity: 0; transition: opacity .17s ease-out; }
+.veil.on { opacity: 1; }
+.veil.out { transition: opacity .36s cubic-bezier(.2, .7, .2, 1); }
+@media (max-width: 760px) { .net { opacity: .55; } html[data-theme="light"] .net { opacity: .45; } }
