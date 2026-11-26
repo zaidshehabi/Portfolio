@@ -663,3 +663,10 @@ html::-webkit-scrollbar { display: none; }
   .stack .w-laptop { width: 76%; inset-inline-end: 4%; top: 45%; }
   .stack .w-phone { width: 26%; inset-inline-start: 2%; bottom: 0; }
 }
+
+/* small phones: tighter section gaps; hero facts put the detail under the label instead of squeezing both into one row */
+@media (max-width: 760px) { main > section { padding-block: 60px; } }
+@media (max-width: 380px) {
+  .facts div { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .facts div > span { text-align: start; }
+}

@@ -1,5 +1,5 @@
 // Light / dark switch. Dark is the default; the choice is kept in localStorage "theme".
-// On desktop a circle opens from the button (View Transitions API); phones switch instantly, all colours at once.
+// A circle opens from the button (View Transitions API), on desktop and phones alike; older browsers get the content dip.
 (function () {
   var root = document.documentElement;
   var btn = document.getElementById('theme-toggle');
@@ -25,8 +25,9 @@
   btn.addEventListener('click', function (ev) {
     var light = root.dataset.theme !== 'light';
     if (reduce || document.hidden || running) { if (running) running.skipTransition(); apply(light); return; }
-    // phones (and browsers without View Transitions): instant switch, no flash (lang.js veilSwap)
-    if (window.veilSwap && (!document.startViewTransition || window.matchMedia('(max-width: 760px), (pointer: coarse)').matches)) {
+    // browsers without View Transitions: the content dip (lang.js veilSwap); everyone else, phones too, gets the circle
+    if (!document.startViewTransition) {
+      if (!window.veilSwap) return apply(light);
       window.veilSwap(light ? '#f2f3f6' : '#0b0c0e', function () { apply(light); });
       return;
     }
