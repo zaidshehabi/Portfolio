@@ -21,13 +21,23 @@
   if (saved === 'ar') setLang('ar'); else if (m) setLang('en');
 
   // Phones: View Transitions snapshot the whole page and the moving address bar cancels them, which looks glitchy,
-  // and a full-screen veil reads as a blank flash. There the change is instant, with every CSS transition held
-  // for two frames so all colours switch together. Shared with theme.js.
+  // and a full-screen veil reads as a blank flash. There the content dips out (.15s), the change happens, and it
+  // rises back (.38s) while the page ground glides to its new colour (CSS: html.dip-out / html.dip-in). Shared with theme.js.
   var small = window.matchMedia('(max-width: 760px), (pointer: coarse)');
+  var dipping = false;
   function veil(colour, change) {
-    root.classList.add('swap');
-    change();
-    requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.remove('swap'); }); });
+    if (dipping) return change();
+    dipping = true;
+    root.classList.add('dip-out');
+    setTimeout(function () {
+      root.classList.add('swap'); // all colours switch at once under the dip, none lagging behind
+      change();
+      root.classList.remove('dip-out');
+      root.classList.add('dip-in');
+      void getComputedStyle(document.body).color; // apply the new colours now, then let transitions back on
+      root.classList.remove('swap');
+      setTimeout(function () { root.classList.remove('dip-in'); dipping = false; }, 420);
+    }, 150);
   }
   window.veilSwap = veil;
 

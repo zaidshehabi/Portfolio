@@ -622,8 +622,12 @@ html[data-theme="light"] .net { opacity: .7; }
   .tools li { font-size: 13px; padding: 7px 10px; }
 }
 
-/* phones: theme and language switch instantly, all colours at once (lang.js adds .swap for two frames) */
+/* phones: theme and language switch with a dip: content fades out, swaps, rises back; the ground glides (lang.js) */
 html.swap *, html.swap *::before, html.swap *::after { transition: none !important; }
+html.dip-out :is(main, footer) { opacity: 0; transform: translateY(-6px); transition: opacity .15s ease-in, transform .15s ease-in; }
+html.dip-in :is(main, footer) { animation: dip-in .38s cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes dip-in { from { opacity: 0; transform: translateY(10px); } }
+html.dip-out body, html.dip-in body { transition: background-color .35s ease !important; }
 @media (max-width: 760px) { .net { opacity: .55; } html[data-theme="light"] .net { opacity: .45; } }
 
 /* =================== v7: balanced headings, symmetric phone layout =================== */
