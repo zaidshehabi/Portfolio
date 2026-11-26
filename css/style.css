@@ -696,3 +696,6 @@ html::-webkit-scrollbar { display: none; }
 .phone > img { position: relative; margin-top: -1px; }
 /* the Domains form: its status bar is the form's own top ~3 pixel rows stretched tall, so the colours meet exactly */
 .phone.form .sb { background: url("../assets/img/xp-form.webp") center top / 100% 50000% no-repeat #2331ba; }
+/* small renders (the laptop hero) average the screenshot's top rows, so a hard join can still show a line:
+   the form slides 6pt under the bar and its top edge fades in, so the two blend at any size */
+.phone.form > img { margin-top: calc(-6 * var(--pt)); -webkit-mask-image: linear-gradient(transparent, #000 calc(6 * var(--pt))); mask-image: linear-gradient(transparent, #000 calc(6 * var(--pt))); }
