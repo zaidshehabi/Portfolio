@@ -164,6 +164,9 @@
       if (reduce) draw();
     }, 150);
   });
-  window.addEventListener('themechange', function () { if (reduce) draw(); });
+  window.addEventListener('themechange', function () { draw(); }); // the new colours show at once, also inside the paused circle
   document.addEventListener('visibilitychange', function () { document.hidden ? stop() : start(); });
+  // hold still during the light/dark circle, so the browser only has to grow the circle (theme.js)
+  window.addEventListener('themeswitchstart', stop);
+  window.addEventListener('themeswitchend', function () { draw(); start(); });
 })();

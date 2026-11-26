@@ -110,7 +110,18 @@
     }
     row.addEventListener('click', pick);
     row.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') pick(); });
+    row._pick = pick;
   });
+  // the first time the panel comes into view, it types the English hello on its own (unless one was picked already)
+  var en = document.querySelector('.lang-row[data-say-lang="en"]');
+  if (en && say && 'IntersectionObserver' in window) {
+    var seen = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      seen.disconnect();
+      setTimeout(function () { if (!say.classList.contains('on')) en._pick(); }, 500);
+    }, { threshold: .6 });
+    seen.observe(say);
+  }
 
   // 6b. tools: a chip opens a small box under the list with a note about that tool; the same chip closes it
   var info = document.querySelector('.tool-info'), infoText = info && info.querySelector('.tool-info-text');
@@ -125,6 +136,10 @@
       else { swap(); info.classList.add('open'); }
     });
   });
+
+  // 6c. hero phone: a WhatsApp call comes in 3 seconds after the page opens, and stays (hover shows it sooner)
+  var ringer = document.querySelector('.w-phone');
+  if (ringer) setTimeout(function () { ringer.classList.add('ring'); }, 3000);
 
   // 7. hero: the windows lean towards the pointer a little
   var hero = document.getElementById('hero'), stack = hero && hero.querySelector('.stack');

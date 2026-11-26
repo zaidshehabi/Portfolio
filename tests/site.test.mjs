@@ -30,10 +30,11 @@ test('phone only as WhatsApp', () => {
   assert.ok(shown.length > 0 && shown.every((n) => n.replace(/\D/g, '') === '963948990111'));
 });
 
-test('default english', () => {
+test('default arabic and light', () => {
   const tag = html().match(/<html[^>]*>/)[0];
-  assert.match(tag, /lang="en"/);
-  assert.match(tag, /dir="ltr"/);
+  assert.match(tag, /lang="ar"/);
+  assert.match(tag, /dir="rtl"/);
+  assert.match(tag, /data-theme="light"/);
 });
 
 test('local links exist', () => {

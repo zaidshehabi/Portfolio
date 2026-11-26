@@ -1,4 +1,4 @@
-// Light / dark switch. Dark is the default; the choice is kept in localStorage "theme".
+// Light / dark switch. Light is the default (data-theme="light" in the HTML); the choice is kept in localStorage "theme".
 // A circle opens from the button (View Transitions API), on desktop and phones alike; older browsers get the content dip.
 (function () {
   var root = document.documentElement;
@@ -20,11 +20,13 @@
     window.dispatchEvent(new Event('themechange'));
   }
   label();
-  var running = null;
+  // want: the theme the visitor last asked for; every tap flips it once, even mid-transition
+  var running = null, want = root.dataset.theme === 'light';
 
   btn.addEventListener('click', function (ev) {
-    var light = root.dataset.theme !== 'light';
-    if (reduce || document.hidden || running) { if (running) running.skipTransition(); apply(light); return; }
+    var light = want = !want;
+    if (running) { running.skipTransition(); return; } // the running one applies `want` when it finishes
+    if (reduce || document.hidden) return apply(light);
     // browsers without View Transitions: the content dip (lang.js veilSwap); everyone else, phones too, gets the circle
     if (!document.startViewTransition) {
       if (!window.veilSwap) return apply(light);
@@ -45,11 +47,18 @@
       probe.remove();
     }
     var end = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
-    running = document.startViewTransition(function () { apply(light); });
-    // a cancelled transition (a phone's address bar moving resizes the viewport) must still switch the theme
-    running.updateCallbackDone.catch(function () {});
-    running.finished.catch(function () {}).finally(function () { running = null; if ((root.dataset.theme === 'light') !== light) apply(light); });
-    running.ready.then(function () {
+    // keep the circle light: the background graph pauses and CSS colour transitions are held (html.swap) while it runs
+    var t = document.startViewTransition(function () { root.classList.add('swap'); apply(want); });
+    running = t;
+    window.dispatchEvent(new Event('themeswitchstart'));
+    t.updateCallbackDone.catch(function () {});
+    t.finished.catch(function () {}).finally(function () {
+      if (running === t) running = null;
+      root.classList.remove('swap');
+      window.dispatchEvent(new Event('themeswitchend'));
+      if ((root.dataset.theme === 'light') !== want) apply(want); // a tap during the circle, or a cancelled transition
+    });
+    t.ready.then(function () {
       root.animate(
         { clipPath: ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + end + 'px at ' + x + 'px ' + y + 'px)'] },
         { duration: 650, easing: 'cubic-bezier(.22,1,.36,1)', pseudoElement: '::view-transition-new(root)' }

@@ -1,4 +1,4 @@
-// Language toggle: English (default) <-> Arabic. Arabic flips the whole page right-to-left (dir="rtl").
+// Language toggle: Arabic (default, set in the HTML) <-> English. Arabic flips the whole page right-to-left (dir="rtl").
 // The switch cross-fades through the View Transitions API on desktop and fades through a veil on phones. Choice kept in localStorage "lang".
 (function () {
   var KEY = 'lang';
@@ -18,7 +18,7 @@
   try { saved = localStorage.getItem(KEY); } catch (e) {}
   var m = /[?&]lang=(ar|en)(?:&|$)/.exec(location.search);
   if (m) saved = m[1];
-  if (saved === 'ar') setLang('ar'); else if (m) setLang('en');
+  if (saved === 'en') setLang('en'); // Arabic is the page's own default
 
   // Phones: View Transitions snapshot the whole page and the moving address bar cancels them, which looks glitchy,
   // and a full-screen veil reads as a blank flash. There the content dips out (.15s), the change happens, and it
@@ -49,16 +49,18 @@
     if (anchor) window.scrollTo({ top: anchor.getBoundingClientRect().top + window.scrollY - top, behavior: 'instant' });
   }
 
+  // want: the language the visitor last asked for; every tap flips it once, even during a dip or cross-fade
+  var want = null;
   function toggle() {
-    var next = root.lang === 'ar' ? 'en' : 'ar';
+    want = (want || root.lang) === 'ar' ? 'en' : 'ar';
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var swap = function () { keepPlace(function () { setLang(next); }); };
+    var swap = function () { if (root.lang !== want) keepPlace(function () { setLang(want); }); };
     if (reduce) return swap();
     if (small.matches || !document.startViewTransition) return veil(getComputedStyle(document.body).backgroundColor, swap);
     root.classList.add('lang-switch'); // scopes the cross-fade so the theme switch keeps its own circle
     var t = document.startViewTransition(swap);
     t.updateCallbackDone.catch(function () {}); t.ready.catch(function () {});
-    t.finished.catch(function () {}).finally(function () { root.classList.remove('lang-switch'); if (root.lang !== next) setLang(next); }); // still switch if the animation was cancelled
+    t.finished.catch(function () {}).finally(function () { root.classList.remove('lang-switch'); if (root.lang !== want) setLang(want); }); // still switch if the animation was cancelled
   }
 
   document.addEventListener('DOMContentLoaded', function () {

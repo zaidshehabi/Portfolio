@@ -70,7 +70,7 @@ A networking section (OSPF and VLAN Packet Tracer labs) is **planned for later**
 ## Decisions to keep (Zaid's choices)
 
 - **Audience:** freelance clients first, networking internships second (changed 2026-11-26).
-- **Look:** dark by default, visually rich, *not* light or plain. "Plain" applies only to the code (no libraries).
+- **Look:** visually rich, *not* plain. **Defaults (changed 2026-11-26): Arabic and light mode** (`<html lang="ar" dir="rtl" data-theme="light">`); a saved choice or `?lang=` / `?theme=` overrides them. "Plain" applies only to the code (no libraries).
 - **Light mode** exists as a button with an animated switch.
 - **Language switch mirrors the layout** (changed 2026-11-26, reverting the earlier "never mirror" rule): Arabic sets `dir="rtl"` on `<html>`, and the switch cross-fades. Keep using logical properties so everything flips; direction-specific fixes live under `[dir="rtl"]` in `style.css` (arrow `.flip`, hero graph fade `--fade-x`).
 - **Left out on purpose:** the Roblox game, the Blender models, the Domains rating site, and (for now) the networking labs.
@@ -85,6 +85,11 @@ A networking section (OSPF and VLAN Packet Tracer labs) is **planned for later**
 - **Copy rewrite (2026-11-26, round 2):** all wording, both languages, rewritten in a formal, professional register (no colloquial Arabic). "الهندسة المعلوماتية" is the only term for the field: never "تقانة" or "تكنولوجيا" (the words "تقنية/التقنية" were also dropped from the copy). Education no longer says "إجازة" / "Bachelor's": Zaid is still a student, so it reads "طالب هندسة معلوماتية، اختصاص الشبكات" / "Informatics Engineering student, networks major".
 - **Phones, round 2 (2026-11-26):** hero facts are full-width rows (label and detail on one line) instead of a 2-column grid with one left over; the two Scout phones sit level; tool chips grow to fill every row; course numbers in three equal columns; headings use `text-wrap: balance`. In light mode the background graph is much softer (hubs and packets no longer sit like blots over text), and the browser bar colour (`theme-color`) follows the theme.
 - **Phone transitions (2026-11-26):** the theme switch uses the same circle as desktop on phones too (View Transitions; the dip only where they are missing). The language switch on phones uses a "dip" (`lang.js` `veilSwap`): the content fades out for .15s, the change happens, and it rises back while the page ground glides to its new colour. No full-screen veil (it read as a blank flash) and no View Transitions (the moving address bar cancels them). Taps show no blue box, and the scrollbar is hidden.
+- **Theme circle (2026-11-26):** starts at the centre of the sun/moon icon at every width (corrected for Android's top address bar). While it runs, the background graph pauses and CSS colour transitions are held (`html.swap`, the icon keeps its morph), so only the circle animates. Both toggles track the last choice (`want`), so quick double or triple taps always land on the right theme or language.
+- **Hero phone call (2026-11-26):** only the main hero phone shows the incoming WhatsApp call: 3 seconds after the page opens (`.ring`, motion.js) it stays, and hover shows it sooner. The other phones have a plain island.
+- **Languages panel:** the first time it comes into view it types the English hello on its own.
+- **Arabic in a colloquial voice** in two places, Zaid's own words: «بعطي التفاصيل الصغيرة حقها، وهي الصفحة مثال على هالشي.» (About) and «لو كان موقع أو مشروع أو تطبيق ويب…» (Contact). The rest stays formal.
+- **Scout app: آلية الحجوزات / depot bookings** named in the intro and first in the feature list (from the scout README: basket per troop, all or nothing, put back, works offline). "Bilingual" left the list to keep six.
 - **Prefer the smallest change** that solves a request ("ponytail" approach) over rebuilding.
 - **Privacy:** changed 2026-11-26 at Zaid's request: the site shows his number **for WhatsApp only** (wa.me link, no `tel:`). A test checks that every number shown is that one.
 - **No invented facts.** Everything comes from the CV or the projects' own README/HANDOFF files.
@@ -98,11 +103,11 @@ A networking section (OSPF and VLAN Packet Tracer labs) is **planned for later**
 - English words inside Arabic text (GitHub, Google, Premiere Pro) go in `<bdi>…</bdi>` so punctuation doesn't jump around.
 - Use CSS logical properties (`margin-inline-start`, not `margin-left`).
 - New colours go in the tokens at the top of `style.css`, **and** get a light-mode value in the `html[data-theme="light"]` block.
-- Everything must still work with `prefers-reduced-motion` (animations rest) and without JavaScript (English, dark, everything visible).
+- Everything must still work with `prefers-reduced-motion` (animations rest) and without JavaScript (Arabic, light, everything visible).
 - After changes: `node --test`, then look at it at desktop width and at about 390px (phone), in both languages and both themes.
 
 ### What the tests check (`node --test`)
-Sections in the right order · English and Arabic blocks paired · no phone number or `tel:` link · page starts as `lang="en" dir="ltr"` · every local `assets/`, `css/`, `js/` link exists · no external scripts.
+Sections in the right order · English and Arabic blocks paired · no phone number or `tel:` link · page starts as `lang="ar" dir="rtl" data-theme="light"` · every local `assets/`, `css/`, `js/` link exists · no external scripts.
 
 ---
 
