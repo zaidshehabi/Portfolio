@@ -36,17 +36,21 @@
     // always from the centre of the sun/moon icon, not where the finger or pointer landed
     var r = (btn.querySelector('svg') || btn).getBoundingClientRect();
     var x = r.left + r.width / 2, y = r.top + r.height / 2;
-    // phones with the address bar at the top (Chrome on Android): the transition is drawn from the top of the screen,
-    // the page from below the bar, so move the centre down by the bar's height. iOS Safari keeps its bar at the bottom.
+    // the transition is drawn on the whole screen, address bar area included (100lvh tall). Chrome on Android keeps its
+    // bar at the top, so the page sits below it: move the centre down by the bar. iOS Safari keeps its bar at the bottom.
     var ios = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    if (!ios && window.CSS && CSS.supports('height', '100lvh')) {
+    var screenH = innerHeight;
+    if (window.CSS && CSS.supports('height', '100lvh')) {
       var probe = document.createElement('div');
       probe.style.cssText = 'position:fixed;top:0;height:100lvh;width:0;visibility:hidden;pointer-events:none';
       document.body.appendChild(probe);
-      y += Math.max(0, probe.getBoundingClientRect().height - innerHeight);
+      screenH = Math.max(innerHeight, probe.getBoundingClientRect().height);
       probe.remove();
+      if (!ios) y += screenH - innerHeight;
     }
-    var end = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    // grow 30% past the farthest corner: the corners are covered while the edge still moves fast, and the slow end of
+    // the curve happens off screen (ending exactly on the corner made the bottom crawl and then pop)
+    var end = 1.3 * Math.hypot(Math.max(x, innerWidth - x), Math.max(y, screenH - y));
     // keep the circle light: the background graph pauses and CSS colour transitions are held (html.swap) while it runs
     var t = document.startViewTransition(function () { root.classList.add('swap'); apply(want); });
     running = t;
@@ -63,7 +67,7 @@
       // a steep ease-out jumps most of the way in the first frames, which shows as a stutter on phones
       root.animate(
         { clipPath: ['circle(' + Math.round(r.width / 2 + 6) + 'px at ' + x + 'px ' + y + 'px)', 'circle(' + Math.ceil(end) + 'px at ' + x + 'px ' + y + 'px)'] },
-        { duration: 560, easing: 'cubic-bezier(.45, .05, .25, 1)', pseudoElement: '::view-transition-new(root)' }
+        { duration: 700, easing: 'cubic-bezier(.45, .05, .25, 1)', pseudoElement: '::view-transition-new(root)' }
       );
     }).catch(function () {});
   });
