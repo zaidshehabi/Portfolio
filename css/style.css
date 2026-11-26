@@ -184,7 +184,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
   background: var(--surface); border: 1px solid var(--line); font-size: 14px; color: var(--ink); direction: ltr;
   transition: border-color .2s, transform .2s var(--ease);
 }
-.tools li:hover, .stack-icons li:hover { border-color: #3d4250; transform: translateY(-2px); }
+@media (hover: hover) { .tools li:hover, .stack-icons li:hover { border-color: #3d4250; transform: translateY(-2px); } } /* touch: no lift that sticks after a tap */
 .stack-icons { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .stack-icons li { padding: 6px 10px; font-size: 13px; }
 .stack-icons .ic { height: 16px; }
@@ -262,7 +262,7 @@ html[data-theme="light"] {
   color-scheme: light;
 }
 html[data-theme="light"] .ic-ink { filter: none; }
-html[data-theme="light"] .tools li:hover, html[data-theme="light"] .stack-icons li:hover,
+@media (hover: hover) { html[data-theme="light"] .tools li:hover, html[data-theme="light"] .stack-icons li:hover { border-color: #aeb3bc; } }
 html[data-theme="light"] .project:hover { border-color: #aeb3bc; }
 html[data-theme="light"] .window { box-shadow: 0 30px 60px -30px rgba(20, 24, 40, .35); }
 
