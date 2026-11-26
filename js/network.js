@@ -51,7 +51,8 @@
   function colours() {
     var light = document.documentElement.dataset.theme === 'light';
     return light
-      ? { link: '31,45,230', lk: .22, node: 'rgba(60,66,80,.42)', hub: 'rgba(31,45,230,.85)', ring: 'rgba(31,45,230,', pk: 'rgba(31,45,230,.9)' }
+      // light: softer than dark, so hubs and packets never read as blots on top of the text
+      ? { link: '31,45,230', lk: .13, node: 'rgba(60,66,80,.22)', hub: 'rgba(31,45,230,.32)', ring: 'rgba(31,45,230,', pk: 'rgba(31,45,230,.38)' }
       : { link: '120,135,255', lk: .2, node: 'rgba(180,186,200,.5)', hub: 'rgba(140,152,255,.95)', ring: 'rgba(120,135,255,', pk: 'rgba(170,180,255,.95)' };
   }
 

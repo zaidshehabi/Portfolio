@@ -13,6 +13,8 @@
   }
   function apply(light) {
     if (light) root.dataset.theme = 'light'; else delete root.dataset.theme;
+    var meta = document.querySelector('meta[name="theme-color"]'); // the phone's browser bar follows the theme
+    if (meta) meta.content = light ? '#f2f3f6' : '#0b0c0e';
     try { localStorage.setItem('theme', light ? 'light' : 'dark'); } catch (e) {}
     label();
     window.dispatchEvent(new Event('themechange'));

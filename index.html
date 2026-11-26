@@ -18,7 +18,7 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
-  <script>document.documentElement.classList.add('js');try{var t=(/[?&]theme=(light|dark)/.exec(location.search)||[])[1]||localStorage.getItem('theme');if(t==='light')document.documentElement.dataset.theme='light'}catch(e){}</script>
+  <script>document.documentElement.classList.add('js');try{var t=(/[?&]theme=(light|dark)/.exec(location.search)||[])[1]||localStorage.getItem('theme');if(t==='light'){document.documentElement.dataset.theme='light';document.querySelector('meta[name="theme-color"]').content='#f2f3f6'}}catch(e){}</script>
   <script src="js/lang.js"></script>
 </head>
 <body>
@@ -58,20 +58,19 @@
   <main id="main">
     <!-- ============ HERO ============ -->
     <section id="hero">
-      <canvas class="net" aria-hidden="true"></canvas>
       <div class="wrap hero-grid" data-enter>
         <div class="hero-text">
           <p class="status">
-            <span data-lang="en">Available for freelance work</span>
-            <span data-lang="ar">متاح للعمل الحر</span>
+            <span data-lang="en">Available for freelance projects</span>
+            <span data-lang="ar">متاح لمشاريع العمل الحر</span>
           </p>
           <h1>
             <span data-lang="en">Zaid Al Shehabi <span class="accent">Hands-on experience in information management</span></span>
             <span data-lang="ar">زيد الشهابي <span class="accent">خبرة عملية في مجال إدارة المعلومات</span></span>
           </h1>
           <p class="hero-lead">
-            <span data-lang="en">I build websites and apps in Arabic and English, from the database to the design, and I keep looking after them once they are live. The biggest is a platform for more than 500 scouts, with a full chain of ranks and a record for every scout. I also set up and look after networks and tech.</span>
-            <span data-lang="ar">أبني مواقع وتطبيقات بالعربية والإنجليزية، من قاعدة البيانات حتى التصميم، ويليها المتابعة والصيانة. أكبرها منصة لإدارة أكثر من 500 كشاف وكشافة، تحوي هيكلية تراتبية وقاعدة بيانات لكل كشاف. بالإضافة إلى ما سبق، حلول ومتابعة شبكية وتقنية.</span>
+            <span data-lang="en">I design and build websites and web apps in Arabic and English, from the database to the interface, and maintain them after launch. My largest project is a platform that manages more than 500 scouts, with a full rank structure and an individual record for every member. I also set up and support networks.</span>
+            <span data-lang="ar">أصمّم وأطوّر مواقع وتطبيقات ويب باللغتين العربية والإنجليزية، من قاعدة البيانات حتى واجهة المستخدم، وأتولّى صيانتها ومتابعتها بعد الإطلاق. أكبر مشاريعي منصة لإدارة أكثر من 500 كشاف وكشافة، بهيكلية تراتبية كاملة وسجلّ مستقل لكل عضو. كما أقدّم حلولاً في إعداد الشبكات ودعمها.</span>
           </p>
           <div class="btns">
             <a class="btn btn-primary" href="mailto:zaidalshehabe@gmail.com?subject=Website%20project">
@@ -80,8 +79,8 @@
               <svg class="flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
           </div>
           <div class="facts">
-            <div><b><span data-lang="en">Full stack</span><span data-lang="ar">من الألف إلى الياء</span></b><span><span data-lang="en">database, server and design</span><span data-lang="ar">قاعدة البيانات والخادم والتصميم</span></span></div>
-            <div><b><span data-lang="en">Two languages</span><span data-lang="ar">لغتان</span></b><span><span data-lang="en">Arabic and English sites</span><span data-lang="ar">مواقع بالعربية والإنجليزية</span></span></div>
+            <div><b><span data-lang="en">Full stack</span><span data-lang="ar">تطوير متكامل</span></b><span><span data-lang="en">database, server and interface</span><span data-lang="ar">قاعدة البيانات والخادم والواجهة</span></span></div>
+            <div><b><span data-lang="en">Bilingual</span><span data-lang="ar">ثنائي اللغة</span></b><span><span data-lang="en">Arabic and English</span><span data-lang="ar">العربية والإنجليزية</span></span></div>
             <div><b><span data-lang="en">4th year</span><span data-lang="ar">السنة الرابعة</span></b><span><span data-lang="en">Informatics engineering, networks</span><span data-lang="ar">الهندسة المعلوماتية، شبكات</span></span></div>
           </div>
         </div>
@@ -105,22 +104,22 @@
         </div>
         <div class="about-grid">
           <div class="about-text" data-reveal>
-            <!-- Zaid's own words (Arabic), translated to English 2026-11-26 -->
+            <!-- Zaid's own points (Arabic), rewritten in formal wording 2026-11-26 -->
             <p>
-              <span data-lang="en">I'm a university student studying informatics engineering at the University of Aleppo, specialising in networks. I volunteer in the information management track at Domains.</span>
-              <span data-lang="ar">طالب جامعي أدرس الهندسة المعلوماتية في جامعة حلب، اختصاص شبكات. متطوع في مسار إدارة المعلومات في <bdi>Domains</bdi>.</span>
+              <span data-lang="en">I am a fourth-year informatics engineering student at the University of Aleppo, majoring in networks, and a volunteer in the information management track at Domains.</span>
+              <span data-lang="ar">طالب في السنة الرابعة في الهندسة المعلوماتية بجامعة حلب، اختصاص الشبكات، ومتطوع في مسار إدارة المعلومات لدى <bdi>Domains</bdi>.</span>
             </p>
             <p>
-              <span data-lang="en">Most of what I've built started with a group I belong to. The scouts needed a platform to coordinate and keep track, so I built it. The volunteer committee wanted a survey, so I designed one. People kept asking me about GitHub and Claude, so I designed a training.</span>
-              <span data-lang="ar">معظم اللي بنيتو بدأ من مجموعة بنتمي لها: احتاج الكشاف لمنصة للتنسيق والمتابعة فبنيتها، وأرادت لجنة المتطوعين استبياناً فصممته، وكانوا الناس يسألوني عن <bdi>GitHub</bdi> و<bdi>Claude</bdi> فصممت تدريباً.</span>
+              <span data-lang="en">Most of my projects began with a real need in a community I belong to. The scout troop needed a platform for coordination and follow-up, so I built one. The volunteer committee needed a survey, so I designed it. And as more people asked me about GitHub and Claude, I developed a training course.</span>
+              <span data-lang="ar">انطلقت معظم مشاريعي من حاجة فعلية لدى مجموعة أنتمي إليها: احتاج الفوج الكشفي إلى منصة للتنسيق والمتابعة فطوّرتها، وطلبت لجنة المتطوعين استبياناً فصمّمته، ومع تزايد الأسئلة حول <bdi>GitHub</bdi> و<bdi>Claude</bdi> أعددت دورة تدريبية.</span>
             </p>
             <p>
-              <span data-lang="en">I love the small details, like how carefully this page is put together.</span>
-              <span data-lang="ar">بحب التفاصيل الصغيرة: متل ما متقنة صفحة التعريف هي.</span>
+              <span data-lang="en">I pay close attention to detail, and this page is one example of it.</span>
+              <span data-lang="ar">أولي التفاصيل الصغيرة اهتماماً خاصاً، وهذه الصفحة مثال على ذلك.</span>
             </p>
             <p>
-              <span data-lang="en">Away from the screen, I'm a musician, a photographer, and an assistant leader in the scout movement since 2022.</span>
-              <span data-lang="ar">وبعيداً عن الشاشة، أنا عازف ومصور ومساعد قائد في الحركة الكشفية من سنة 2022.</span>
+              <span data-lang="en">Outside of work, I am a musician and photographer, and I have served as an assistant scout leader since 2022.</span>
+              <span data-lang="ar">وخارج العمل، أنا عازف ومصوّر، ومساعد قائد في الحركة الكشفية منذ عام 2022.</span>
             </p>
           </div>
           <div class="panels">
@@ -129,8 +128,8 @@
               <div class="edu-row">
                 <span class="edu-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
                 <div>
-                  <b><span data-lang="en">Bachelor's in Informatics Engineering, networks</span><span data-lang="ar">إجازة في الهندسة المعلوماتية، اختصاص الشبكات</span></b>
-                  <span class="edu-sub"><span data-lang="en">University of Aleppo · 2023 to 2028 (expected)</span><span data-lang="ar">جامعة حلب · من 2023 حتى 2028 (متوقع)</span></span>
+                  <b><span data-lang="en">Informatics Engineering student, networks major</span><span data-lang="ar">طالب هندسة معلوماتية، اختصاص الشبكات</span></b>
+                  <span class="edu-sub"><span data-lang="en">University of Aleppo · 2023 to 2028 (expected graduation)</span><span data-lang="ar">جامعة حلب · من 2023 حتى 2028 (التخرّج المتوقّع)</span></span>
                 </div>
               </div>
             </div>
@@ -168,7 +167,7 @@
                   <span class="cefr" aria-hidden="true"><i class="on" style="--k:0"></i><i class="on" style="--k:1"></i><i class="on" style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i></span>
                 </button>
                 <div class="cefr-scale" aria-hidden="true"><span>A1</span><span>A2</span><span>B1</span><span>B2</span><span>C1</span><span>C2</span></div>
-                <p class="lang-say" aria-live="polite"><span class="say-hint"><span data-lang="en">Pick a language and I'll say hello.</span><span data-lang="ar">اختر لغة وسأسلّم عليك بها.</span></span><span class="say-text"></span><i class="caret" aria-hidden="true"></i></p>
+                <p class="lang-say" aria-live="polite"><span class="say-hint"><span data-lang="en">Select a language to see a greeting in it.</span><span data-lang="ar">اختر لغة لتظهر التحية بها.</span></span><span class="say-text"></span><i class="caret" aria-hidden="true"></i></p>
               </div>
             </div>
           </div>
@@ -181,15 +180,15 @@
       <div class="wrap">
         <div class="section-head">
           <h2 class="section-title" data-reveal="wipe"><span data-lang="en">Work</span><span data-lang="ar">أعمالي</span></h2>
-          <p class="section-lead" data-reveal><span data-lang="en">Two web projects I built for groups I'm part of.</span><span data-lang="ar">مشروعا ويب بنيتهما لمجموعات أنتمي إليها.</span></p>
+          <p class="section-lead" data-reveal><span data-lang="en">Two web projects built for organisations I belong to.</span><span data-lang="ar">مشروعا ويب طوّرتهما لجهات أنتمي إليها.</span></p>
         </div>
 
         <article class="scout" data-reveal="card">
           <div class="scout-top">
             <div class="scout-intro">
-              <span class="tag"><span data-lang="en">Main project · website + Android app</span><span data-lang="ar">المشروع الأساسي · موقع وتطبيق أندرويد</span></span>
+              <span class="tag"><span data-lang="en">Featured project · Website and Android app</span><span data-lang="ar">المشروع الرئيسي · موقع وتطبيق أندرويد</span></span>
               <h3><span data-lang="en">Scout Troop 2 app</span><span data-lang="ar">تطبيق الفوج الكشفي الثاني</span></h3>
-              <p><span data-lang="en">A website and Android app for my scout troop. Leaders give scouts XP points for activities, and anyone can open the public page to see each scout's points and history. It's in Arabic and English, and I built all of it myself, from the database to the design.</span><span data-lang="ar">موقع وتطبيق أندرويد لفرقتي الكشفية. يمنح القادة الكشافة نقاط خبرة على النشاطات، ويستطيع أي شخص أن يفتح الصفحة العامة ليرى نقاط كل كشفي وسجلّه. يعمل بالعربية والإنجليزية، وبنيته كله بنفسي من قاعدة البيانات حتى التصميم.</span></p>
+              <p><span data-lang="en">A website and Android app for my scout troop. Leaders award XP points for activities, and a public page shows every scout's points and history. It is fully bilingual, and I built it end to end, from the database to the interface.</span><span data-lang="ar">موقع وتطبيق أندرويد للفوج الكشفي. يمنح القادة نقاط الخبرة على النشاطات، وتعرض صفحة عامة نقاط كل كشاف وسجلّه. يدعم العربية والإنجليزية بالكامل، وقد طوّرته بمفردي من قاعدة البيانات حتى واجهة المستخدم.</span></p>
               <ul class="stack-icons" aria-label="Built with">
                 <li><img class="ic" src="assets/icons/html-5.svg" alt="" width="18" height="24">HTML</li>
                 <li><img class="ic" src="assets/icons/css.svg" alt="" width="24" height="24">CSS</li>
@@ -207,28 +206,28 @@
           </div>
           <ul class="features" data-reveal="list">
             <li><b><span data-lang="en">XP points</span><span data-lang="ar">نقاط الخبرة</span></b>
-              <span><span data-lang="en">Leaders award points with a note. Each scout's history is public.</span><span data-lang="ar">يمنح القادة النقاط مع ملاحظة، وسجلّ كل كشفي متاح للجميع.</span></span></li>
+              <span><span data-lang="en">Leaders award points with a note, and every scout's history is public.</span><span data-lang="ar">يمنح القادة النقاط مع ملاحظة، وسجلّ كل كشاف متاح للجميع.</span></span></li>
             <li><b><span data-lang="en">Roles and privacy</span><span data-lang="ar">الصلاحيات والخصوصية</span></b>
-              <span><span data-lang="en">Six account roles. Leaders only see private details for their own troop.</span><span data-lang="ar">ستة أنواع من الحسابات، ولا يرى القائد التفاصيل الخاصة إلا لفرقته.</span></span></li>
+              <span><span data-lang="en">Six account roles; leaders see private details only for their own troop.</span><span data-lang="ar">ستة أنواع من الحسابات، ولا يطّلع القائد على البيانات الخاصة إلا لفرقته.</span></span></li>
             <li><b><span data-lang="en">Weekly reports</span><span data-lang="ar">التقارير الأسبوعية</span></b>
-              <span><span data-lang="en">One report per troop every Saturday, plus camps and trips with photos.</span><span data-lang="ar">تقرير لكل فرقة كل سبت، إضافة إلى المخيمات والرحلات مع صورها.</span></span></li>
+              <span><span data-lang="en">A report for each troop every Saturday, plus camps and trips with photo galleries.</span><span data-lang="ar">تقرير لكل فرقة كل سبت، إضافة إلى توثيق المخيمات والرحلات بالصور.</span></span></li>
             <li><b><span data-lang="en">Musical team</span><span data-lang="ar">الفرقة الموسيقية</span></b>
-              <span><span data-lang="en">Its own points, practice attendance and a library of marches.</span><span data-lang="ar">نقاط خاصة بها، وتسجيل حضور التدريبات، ومكتبة للمارشات.</span></span></li>
+              <span><span data-lang="en">Dedicated points, rehearsal attendance and a library of marches.</span><span data-lang="ar">نقاط مستقلة، وتسجيل حضور التدريبات، ومكتبة للمارشات.</span></span></li>
             <li><b><span data-lang="en">Notifications</span><span data-lang="ar">الإشعارات</span></b>
-              <span><span data-lang="en">Push notifications for new posts, and an Android app that asks to update itself.</span><span data-lang="ar">إشعارات فورية عند كل منشور جديد، وتطبيق أندرويد يطلب التحديث بنفسه.</span></span></li>
-            <li><b><span data-lang="en">Two languages</span><span data-lang="ar">لغتان</span></b>
-              <span><span data-lang="en">Arabic by default, English with one tap.</span><span data-lang="ar">العربية افتراضياً، والإنجليزية بلمسة واحدة.</span></span></li>
+              <span><span data-lang="en">Push notifications for new posts, and an Android app that prompts users to update.</span><span data-lang="ar">إشعارات فورية عند كل منشور جديد، وتطبيق أندرويد ينبّه المستخدم عند توفّر تحديث.</span></span></li>
+            <li><b><span data-lang="en">Bilingual</span><span data-lang="ar">ثنائي اللغة</span></b>
+              <span><span data-lang="en">Arabic by default, English in one tap.</span><span data-lang="ar">العربية افتراضياً، والإنجليزية بلمسة واحدة.</span></span></li>
           </ul>
         </article>
 
         <article class="project xp" data-reveal="card">
           <div class="project-body">
-            <span class="tag"><span data-lang="en">Form + results page</span><span data-lang="ar">نموذج وصفحة نتائج</span></span>
+            <span class="tag"><span data-lang="en">Form and results page</span><span data-lang="ar">نموذج وصفحة نتائج</span></span>
             <h3><span data-lang="en">XP points feedback form</span><span data-lang="ar">نموذج تقييم نظام النقاط</span></h3>
-            <p><span data-lang="en">A short Arabic form that asks volunteers what they think of the XP points system. Answers go straight into a Google Sheet, and the committee reads them on a password-protected results page.</span><span data-lang="ar">نموذج عربي قصير يسأل المتطوعين عن رأيهم في نظام النقاط. تذهب الإجابات مباشرة إلى جدول <bdi>Google</bdi>، وتقرؤها اللجنة في صفحة نتائج محميّة بكلمة مرور.</span></p>
+            <p><span data-lang="en">A short Arabic survey that gathers volunteers' feedback on the XP points system. Responses are saved directly to a Google Sheet, and the committee reviews them on a password-protected results page.</span><span data-lang="ar">استبيان عربي قصير يجمع آراء المتطوعين في نظام النقاط. تُحفظ الإجابات مباشرة في جدول <bdi>Google</bdi>، وتطّلع عليها اللجنة عبر صفحة نتائج محميّة بكلمة مرور.</span></p>
             <ul class="checks">
-              <li><span data-lang="en">Made for phones first</span><span data-lang="ar">مصمَّم للهاتف أولاً</span></li>
-              <li><span data-lang="en">Light and dark mode</span><span data-lang="ar">وضع فاتح وداكن</span></li>
+              <li><span data-lang="en">Mobile-first design</span><span data-lang="ar">تصميم يراعي الهاتف أولاً</span></li>
+              <li><span data-lang="en">Light and dark modes</span><span data-lang="ar">وضعان فاتح وداكن</span></li>
             </ul>
             <ul class="stack-icons" aria-label="Built with">
               <li><img class="ic" src="assets/icons/html-5.svg" alt="" width="18" height="24">HTML</li>
@@ -253,14 +252,14 @@
 
         <article class="course">
           <div class="course-text" data-reveal>
-            <span class="tag"><span data-lang="en">A course I made and teach</span><span data-lang="ar">دورة أعددتها وأقدّمها</span></span>
+            <span class="tag"><span data-lang="en">A course I designed and deliver</span><span data-lang="ar">دورة من إعدادي وتقديمي</span></span>
             <h3><bdi>GitHub + Claude</bdi></h3>
-            <p class="course-sub"><span data-lang="en">AI literacy and working with GitHub, for people outside IT</span><span data-lang="ar">محو أمية الذكاء الاصطناعي والتعامل مع <bdi>GitHub</bdi> لغير المتخصصين</span></p>
-            <p><span data-lang="en">People ask Claude to make a web page, save it on GitHub, go back to any version and put it online. All of it from the browser, with no coding. I teach in Arabic and keep the English terms, and I made the slides, a presenter script and a study guide.</span><span data-lang="ar">يطلب المشاركون من <bdi>Claude</bdi> صفحة ويب، ثم يحفظونها على <bdi>GitHub</bdi> ويعودون إلى أي نسخة منها وينشرونها على الإنترنت. كل ذلك من المتصفح ومن دون برمجة. أشرح بالعربية مع إبقاء المصطلحات بالإنجليزية، وأعددت الشرائح ونصاً للمقدّم ودليلاً للدراسة.</span></p>
+            <p class="course-sub"><span data-lang="en">AI literacy and GitHub essentials for non-specialists</span><span data-lang="ar">أساسيات الذكاء الاصطناعي والعمل على <bdi>GitHub</bdi> لغير المتخصصين في الهندسة المعلوماتية</span></p>
+            <p><span data-lang="en">Participants ask Claude to build a web page, save it to GitHub, restore any earlier version and publish it online, all from the browser and without writing code. I teach in Arabic while keeping the English terminology, and I prepared the slides, a presenter script and a study guide.</span><span data-lang="ar">يطلب المشاركون من <bdi>Claude</bdi> إنشاء صفحة ويب، ثم يحفظونها على <bdi>GitHub</bdi>، ويستعيدون أي نسخة سابقة منها، وينشرونها على الإنترنت، وكل ذلك من المتصفح ودون كتابة أي سطر برمجي. أقدّم الدورة بالعربية مع الحفاظ على المصطلحات الإنجليزية، وأعددت الشرائح ونص المقدّم ودليلاً للدراسة.</span></p>
             <dl class="course-facts">
               <div><dt>35</dt><dd><span data-lang="en">slides</span><span data-lang="ar">شريحة</span></dd></div>
               <div><dt><bdi>90–120</bdi></dt><dd><span data-lang="en">minutes</span><span data-lang="ar">دقيقة</span></dd></div>
-              <div><dt>0</dt><dd><span data-lang="en">code to write</span><span data-lang="ar">سطر برمجة</span></dd></div>
+              <div><dt>0</dt><dd><span data-lang="en">lines of code</span><span data-lang="ar">أسطر برمجية</span></dd></div>
             </dl>
           </div>
           <div class="deck" data-reveal="deck">
@@ -282,27 +281,27 @@
             <span class="t-dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>
             <time><span data-lang="en">July 2026 to now</span><span data-lang="ar">من تموز 2026 حتى الآن</span></time>
             <div class="t-body">
-              <span class="t-kind"><span data-lang="en">Information management, volunteer</span><span data-lang="ar">إدارة المعلومات، تطوع</span></span>
-              <b><span data-lang="en">Volunteer, information management track at Domains</span><span data-lang="ar">متطوع في مسار إدارة المعلومات في <bdi>Domains</bdi></span></b>
-              <span><span data-lang="en">I fix IT problems, help with technical tasks and give training sessions.</span><span data-lang="ar">أحلّ المشكلات التقنية وأساعد في المهام التقنية وأقدّم جلسات تدريبية.</span></span>
+              <span class="t-kind"><span data-lang="en">Volunteer · Information management</span><span data-lang="ar">تطوع · إدارة المعلومات</span></span>
+              <b><span data-lang="en">Volunteer, information management track at Domains</span><span data-lang="ar">متطوع في مسار إدارة المعلومات لدى <bdi>Domains</bdi></span></b>
+              <span><span data-lang="en">I resolve technical issues, provide day-to-day support and deliver training sessions.</span><span data-lang="ar">أعالج الأعطال وأقدّم الدعم الفني اليومي، وأُعدّ جلسات تدريبية وأقدّمها.</span></span>
             </div>
           </li>
           <li data-reveal>
             <span class="t-dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span>
             <time><span data-lang="en">May to November 2025</span><span data-lang="ar">من أيار حتى تشرين الثاني 2025</span></time>
             <div class="t-body">
-              <span class="t-kind"><span data-lang="en">Full-time job</span><span data-lang="ar">عمل بدوام كامل</span></span>
-              <b><span data-lang="en">Video editor and photographer, Leads</span><span data-lang="ar">محرّر فيديو ومصوّر في <bdi>Leads</bdi></span></b>
-              <span><span data-lang="en">At a marketing agency. I edited videos in Premiere Pro and took photos for clients' campaigns.</span><span data-lang="ar">في وكالة تسويق. حرّرت الفيديو على <bdi>Premiere Pro</bdi> والتقطت الصور لحملات العملاء.</span></span>
+              <span class="t-kind"><span data-lang="en">Full-time</span><span data-lang="ar">دوام كامل</span></span>
+              <b><span data-lang="en">Video editor and photographer, Leads</span><span data-lang="ar">محرّر فيديو ومصوّر لدى <bdi>Leads</bdi></span></b>
+              <span><span data-lang="en">At a marketing agency, I edited videos in Premiere Pro and photographed client campaigns.</span><span data-lang="ar">في وكالة تسويق، تولّيت مونتاج الفيديو على <bdi>Premiere Pro</bdi> وتصوير حملات العملاء.</span></span>
             </div>
           </li>
           <li data-reveal>
             <span class="t-dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></span>
             <time><span data-lang="en">February to March 2023</span><span data-lang="ar">من شباط حتى آذار 2023</span></time>
             <div class="t-body">
-              <span class="t-kind"><span data-lang="en">Relief, volunteer</span><span data-lang="ar">إغاثة، تطوع</span></span>
-              <b><span data-lang="en">Relief volunteer, Syria Trust for Development</span><span data-lang="ar">متطوع إغاثة في الأمانة السورية للتنمية</span></b>
-              <span><span data-lang="en">After the earthquake, I helped hand out food, clothes and medicine.</span><span data-lang="ar">بعد الزلزال ساعدت في توزيع الطعام والملابس والأدوية.</span></span>
+              <span class="t-kind"><span data-lang="en">Volunteer · Relief</span><span data-lang="ar">تطوع · إغاثة</span></span>
+              <b><span data-lang="en">Relief volunteer, Syria Trust for Development</span><span data-lang="ar">متطوع إغاثة لدى الأمانة السورية للتنمية</span></b>
+              <span><span data-lang="en">After the February 2023 earthquake, I helped distribute food, clothing and medicine.</span><span data-lang="ar">بعد زلزال شباط 2023، شاركت في توزيع الغذاء والملابس والأدوية.</span></span>
             </div>
           </li>
           <li data-reveal>
@@ -311,7 +310,7 @@
             <div class="t-body">
               <span class="t-kind"><span data-lang="en">Leadership</span><span data-lang="ar">قيادة</span></span>
               <b><span data-lang="en">Assistant scout leader</span><span data-lang="ar">قائد كشفي مساعد</span></b>
-              <span><span data-lang="en">I lead a troop made up of several patrols and organise its activities and events.</span><span data-lang="ar">أقود فرقة من عدة طلائع وأنظّم نشاطاتها وفعالياتها.</span></span>
+              <span><span data-lang="en">I lead a troop of several patrols and organise its activities and events.</span><span data-lang="ar">أقود فرقة تضمّ عدة طلائع، وأنظّم نشاطاتها وفعالياتها.</span></span>
             </div>
           </li>
         </ol>
@@ -322,15 +321,15 @@
     <!-- ============ CONTACT ============ -->
     <section id="contact">
       <div class="wrap">
-        <h2 class="contact-title" data-reveal="wipe"><span data-lang="en">Have a project in mind? Tell me about it.</span><span data-lang="ar">لديك مشروع في بالك؟ حدّثني عنه.</span></h2>
-        <p class="section-lead" data-reveal><span data-lang="en">A website, a web app, a form or a dashboard: email me or message me on WhatsApp. I'm also open to networking internships.</span><span data-lang="ar">موقع أو تطبيق ويب أو نموذج أو لوحة متابعة: راسلني بالبريد أو على واتساب. وأنا منفتح أيضاً على فرص التدريب في مجال الشبكات.</span></p>
+        <h2 class="contact-title" data-reveal="wipe"><span data-lang="en">Have a project in mind? Let's talk.</span><span data-lang="ar">لديك مشروع؟ لنتحدّث.</span></h2>
+        <p class="section-lead" data-reveal><span data-lang="en">Whether it is a website, a web app, a form or a dashboard, reach me by email or WhatsApp. I am also open to networking internships.</span><span data-lang="ar">سواء كان موقعاً أو تطبيق ويب أو نموذجاً أو لوحة متابعة، تواصل معي عبر البريد الإلكتروني أو واتساب. كما أرحّب بفرص التدريب في مجال الشبكات.</span></p>
         <a class="mail" data-reveal href="mailto:zaidalshehabe@gmail.com">zaidalshehabe@gmail.com</a>
         <a class="phone-num" data-reveal href="https://wa.me/963948990111" rel="noopener" target="_blank"><bdi>+963 948 990 111</bdi> <span class="phone-tag">WhatsApp</span></a>
         <div class="btns" data-reveal>
           <a class="btn btn-primary" href="mailto:zaidalshehabe@gmail.com?subject=Website%20project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><span data-lang="en">Email me</span><span data-lang="ar">راسلني</span></a>
           <a class="btn btn-ghost" href="https://wa.me/963948990111" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25D366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/><path fill="#fff" d="M17.2 14.3c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-1.6-.8-2.7-1.4-3.7-3.2-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5l-.9-2.1c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.7.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3Z"/></svg><span data-lang="en">Message on WhatsApp</span><span data-lang="ar">راسلني على واتساب</span></a>
           <a class="btn btn-ghost" href="https://linkedin.com/in/zaidshehabi" rel="noopener" target="_blank">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#0A66C2" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg><span data-lang="en">Open LinkedIn</span><span data-lang="ar">افتح لينكدإن</span></a>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#0A66C2" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg><span data-lang="en">LinkedIn profile</span><span data-lang="ar">الملف على لينكدإن</span></a>
           <a class="btn btn-ghost" href="assets/cv/Zaid_Al_Shehabi_CV_EN.pdf" download data-lang="en">Download CV</a>
           <a class="btn btn-ghost" href="assets/cv/Zaid_Al_Shehabi_CV_AR.pdf" download data-lang="ar">حمّل السيرة الذاتية</a>
         </div>

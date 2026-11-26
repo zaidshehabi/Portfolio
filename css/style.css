@@ -624,3 +624,19 @@ html[data-theme="light"] .net { opacity: .7; }
 .veil.on { opacity: 1; }
 .veil.out { transition: opacity .36s cubic-bezier(.2, .7, .2, 1); }
 @media (max-width: 760px) { .net { opacity: .55; } html[data-theme="light"] .net { opacity: .45; } }
+
+/* =================== v7: balanced headings, symmetric phone layout =================== */
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+@media (max-width: 760px) {
+  /* hero facts: three full-width rows instead of a 2-column grid with one left over */
+  .facts { grid-template-columns: 1fr; gap: 0; padding-top: 0; }
+  .facts div { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+  .facts div > span { text-align: end; }
+  /* scout phones side by side, level, same size */
+  .scout-phone .phone + .phone { margin-top: 0; }
+  /* chips grow to fill every row edge to edge */
+  .tools li, .stack-icons li { flex: 1 1 auto; justify-content: center; }
+  /* course numbers in three equal columns */
+  .course-facts { grid-template-columns: repeat(3, 1fr); }
+}
