@@ -349,15 +349,15 @@ html[data-theme="light"] #theme-toggle:hover .tt-stars { transform: scale(1.25);
 .sb-signal { width: calc(17 * var(--pt)); } .sb-wifi { width: calc(15.3 * var(--pt)); } .sb-batt { width: calc(27.4 * var(--pt)); }
 .sb svg { height: auto; display: block; }
 .home-ind { position: absolute; left: 50%; bottom: calc(8 * var(--pt)); width: calc(134 * var(--pt)); height: calc(5 * var(--pt)); border-radius: 99px; background: var(--sb-ink, #fff); opacity: .85; transform: translateX(-50%); z-index: 2; }
-/* Dynamic Island; the hero phone gets an incoming call 3s after load (motion.js adds .ring) and on hover */
+/* Dynamic Island; on hover the hero phone gets an incoming call */
 .island {
   position: absolute; z-index: 3; left: 50%; top: calc(11 * var(--pt)); width: calc(126 * var(--pt)); height: calc(37.3 * var(--pt));
   border-radius: calc(19 * var(--pt)); background: #000; transform: translateX(-50%); overflow: hidden;
   transition: width .6s var(--spring), height .6s var(--spring), top .6s var(--spring), border-radius .6s var(--spring);
 }
-.w-phone:is(:hover, .ring) .island { top: calc(8 * var(--pt)); width: calc(373 * var(--pt)); height: calc(78 * var(--pt)); border-radius: calc(39 * var(--pt)); }
+.w-phone:hover .island { top: calc(8 * var(--pt)); width: calc(373 * var(--pt)); height: calc(78 * var(--pt)); border-radius: calc(39 * var(--pt)); }
 .call { position: absolute; inset: 0; display: flex; align-items: center; gap: calc(10 * var(--pt)); padding-inline: calc(14 * var(--pt)); color: #fff; opacity: 0; transition: opacity .2s; }
-.w-phone:is(:hover, .ring) .call { opacity: 1; transition: opacity .3s .2s; }
+.w-phone:hover .call { opacity: 1; transition: opacity .3s .2s; }
 .call-av { flex: none; width: calc(50 * var(--pt)); height: calc(50 * var(--pt)); border-radius: 50%; display: grid; place-items: center; background: linear-gradient(#a3a8b3, #6e7482); }
 .call-av svg { width: 62%; color: #fff; }
 .call-who { flex: 1; min-width: 0; display: grid; gap: calc(2 * var(--pt)); line-height: 1.1; font-family: -apple-system, "SF Pro Text", "Segoe UI", system-ui, sans-serif; }
@@ -366,7 +366,7 @@ html[data-theme="light"] #theme-toggle:hover .tt-stars { transform: scale(1.25);
 .call-btn { flex: none; width: calc(46 * var(--pt)); height: calc(46 * var(--pt)); border-radius: 50%; display: grid; place-items: center; color: #fff; }
 .call-btn svg { width: 52%; }
 .call-btn.no { background: #ff3b30; } .call-btn.yes { background: #34c759; }
-.w-phone:is(:hover, .ring) .call-btn.yes svg { animation: ring 1s ease-in-out .5s infinite; }
+.w-phone:hover .call-btn.yes svg { animation: ring 1s ease-in-out .5s infinite; }
 @keyframes ring { 0%, 50%, 100% { transform: rotate(0); } 10%, 30% { transform: rotate(-16deg); } 20%, 40% { transform: rotate(16deg); } }
 /* a website in Safari: the compact bottom bar with the address pill */
 .safari { position: relative; display: block; height: calc(83 * var(--pt)); padding: calc(6 * var(--pt)) calc(12 * var(--pt)) 0; background: rgba(22, 22, 24, .96); }

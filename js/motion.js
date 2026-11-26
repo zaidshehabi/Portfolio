@@ -137,10 +137,6 @@
     });
   });
 
-  // 6c. hero phone: a WhatsApp call comes in 3 seconds after the page opens, and stays (hover shows it sooner)
-  var ringer = document.querySelector('.w-phone');
-  if (ringer) setTimeout(function () { ringer.classList.add('ring'); }, 3000);
-
   // 7. hero: the windows lean towards the pointer a little
   var hero = document.getElementById('hero'), stack = hero && hero.querySelector('.stack');
   if (stack && !reduce && matchMedia('(pointer: fine)').matches) {

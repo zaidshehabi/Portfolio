@@ -59,9 +59,11 @@
       if ((root.dataset.theme === 'light') !== want) apply(want); // a tap during the circle, or a cancelled transition
     });
     t.ready.then(function () {
+      // starts at the icon's own size (instant feedback under the finger) and grows on an even curve:
+      // a steep ease-out jumps most of the way in the first frames, which shows as a stutter on phones
       root.animate(
-        { clipPath: ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + end + 'px at ' + x + 'px ' + y + 'px)'] },
-        { duration: 650, easing: 'cubic-bezier(.22,1,.36,1)', pseudoElement: '::view-transition-new(root)' }
+        { clipPath: ['circle(' + Math.round(r.width / 2 + 6) + 'px at ' + x + 'px ' + y + 'px)', 'circle(' + Math.ceil(end) + 'px at ' + x + 'px ' + y + 'px)'] },
+        { duration: 560, easing: 'cubic-bezier(.45, .05, .25, 1)', pseudoElement: '::view-transition-new(root)' }
       );
     }).catch(function () {});
   });
