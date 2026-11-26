@@ -31,8 +31,19 @@
       window.veilSwap(light ? '#f2f3f6' : '#0b0c0e', function () { apply(light); });
       return;
     }
-    var r = btn.getBoundingClientRect();
-    var x = ev.clientX || r.left + r.width / 2, y = ev.clientY || r.top + r.height / 2;
+    // always from the centre of the sun/moon icon, not where the finger or pointer landed
+    var r = (btn.querySelector('svg') || btn).getBoundingClientRect();
+    var x = r.left + r.width / 2, y = r.top + r.height / 2;
+    // phones with the address bar at the top (Chrome on Android): the transition is drawn from the top of the screen,
+    // the page from below the bar, so move the centre down by the bar's height. iOS Safari keeps its bar at the bottom.
+    var ios = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    if (!ios && window.CSS && CSS.supports('height', '100lvh')) {
+      var probe = document.createElement('div');
+      probe.style.cssText = 'position:fixed;top:0;height:100lvh;width:0;visibility:hidden;pointer-events:none';
+      document.body.appendChild(probe);
+      y += Math.max(0, probe.getBoundingClientRect().height - innerHeight);
+      probe.remove();
+    }
     var end = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
     running = document.startViewTransition(function () { apply(light); });
     // a cancelled transition (a phone's address bar moving resizes the viewport) must still switch the theme

@@ -55,7 +55,12 @@
       tl.style.setProperty('--tp', p.toFixed(4));
       tlItems.forEach(function (li) { li.classList.toggle('lit', li.getBoundingClientRect().top + 22 < mark); });
     }
-    if (heroGrid && !reduce) heroGrid.style.setProperty('--hp', Math.min(1, y / vh).toFixed(4));
+    // hero fade: starts once the hero's foot reaches the bottom of the screen (at once on desktop, where the hero is one
+    // screen tall; later on phones, where it is taller and the devices sit at its foot)
+    if (heroGrid && !reduce) {
+      var start = Math.max(0, heroGrid.parentNode.offsetHeight - vh);
+      heroGrid.style.setProperty('--hp', Math.min(1, Math.max(0, (y - start) / vh)).toFixed(4));
+    }
   }
   window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   window.addEventListener('resize', function () { placePill(); onScroll(); });

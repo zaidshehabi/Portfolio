@@ -55,7 +55,7 @@ The site itself is only `index.html`, `css/`, `js/` and `assets/` (about 460 KB)
 
 Sections in order (ids are checked by the tests):
 
-1. `#hero`: name (the "Available for freelance" line was removed 2026-11-26 at Zaid's request), "I build websites and web apps", intro, **Start a project** (mailto) + **See my work**, three facts, and three devices: the course slide, a laptop with the Scout home page, and an iPhone with the leader area in light mode.
+1. `#hero`: a short "Freelance work" / "العمل الحر" line (no "Available"/"متاح"), name, "I build websites and web apps", intro, **Request a project** (opens WhatsApp) + **See my work**, three facts, and three devices: the course slide, a laptop with the Scout home page, and an iPhone with the Domains XP feedback form in Safari.
 2. `#about`: "About me" text (**a draft written from the CV and projects; Zaid will send his own words to replace it**); Education, Tools I use (real logos, VS Code included), Languages (a CEFR scale per language; picking one types a hello in that language).
 3. `#built`: "Projects". **Scout Troop 2 app** is the main project (two dark-mode phone screens, tools, six features as a ruled list); then the **XP points feedback form** (dark-mode phone screenshot, centred).
 4. `#teaching`: "Teaching and experience" (nav: Experience): the **GitHub + Claude** course (AI literacy and working with GitHub, for people outside IT; 35 slides, 90 to 120 min, no coding; facts from the deck in `S:/Claude/Github/presentation/index.html`) with its first three slides as a fanned deck, then a timeline, newest start date first (dates, a rail that fills as you scroll, an icon per entry, a card per role).

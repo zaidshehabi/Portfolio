@@ -391,12 +391,12 @@ html[data-theme="light"] .lid { border-color: #c9ccd3; box-shadow: 0 30px 60px -
 html[data-theme="light"] .base { background: linear-gradient(#eceef1, #c7cad1 55%, #a9adb5); box-shadow: 0 18px 30px -16px rgba(20, 24, 40, .45); }
 html[data-theme="light"] .base::before { background: #b3b7bf; }
 
-/* hero: laptop (back), course slide (middle, beside the phone), phone (front); each drifts with the pointer at its own depth */
+/* hero: course slide (back), laptop (middle), phone (front); each drifts with the pointer at its own depth */
 .stack { aspect-ratio: 628 / 500; }
 .stack > * { position: absolute; transition: transform .9s var(--ease); }
-.stack .w-main { inset-inline-start: 29%; top: 50%; width: 52%; height: auto; z-index: 2; transform: translate(calc(var(--mx, 0) * -8px), calc(var(--my, 0) * -6px)); }
+.stack .w-main { inset-inline-start: 8%; top: 3%; width: 54%; height: auto; z-index: 1; transform: translate(calc(var(--mx, 0) * -8px), calc(var(--my, 0) * -6px)); }
 .window img { height: auto; }
-.stack .w-laptop { inset-inline-end: 4%; top: 0; width: 80%; z-index: 1; transform: translate(calc(var(--mx, 0) * 10px), calc(var(--my, 0) * 8px)); }
+.stack .w-laptop { inset-inline-end: 3%; top: 15%; width: 80%; z-index: 2; transform: translate(calc(var(--mx, 0) * 10px), calc(var(--my, 0) * 8px)); }
 .stack .w-phone { inset-inline-start: 1%; bottom: -10%; width: 25%; z-index: 3; border-width: 5px; transform: translate(calc(var(--mx, 0) * 22px), calc(var(--my, 0) * 16px)); }
 .stack .w-phone:hover { transform: translate(calc(var(--mx, 0) * 22px), calc(var(--my, 0) * 16px - 6px)); }
 .hero-grid { opacity: calc(1 - var(--hp, 0) * .7); transform: translateY(calc(var(--hp, 0) * 60px)); }
@@ -656,12 +656,12 @@ html::-webkit-scrollbar { display: none; }
 
 .t-dot { background: var(--bg-2); border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); color: color-mix(in srgb, var(--accent) 55%, var(--muted)); }
 
-/* phones: hero devices stay inside the margins; laptop at the back, course slide in front of it beside the phone */
+/* phones: hero devices stay inside the margins; the course slide peeks out from behind the laptop, phone in front */
 @media (max-width: 760px) {
-  .stack { width: auto; margin: 36px 0 8px; aspect-ratio: 35 / 33; }
-  .stack .w-main { width: 62%; inset-inline-start: 32%; top: 40%; }
-  .stack .w-laptop { width: 80%; inset-inline-end: 4%; top: 0; }
-  .stack .w-phone { width: 27%; inset-inline-start: 2%; bottom: 0; }
+  .stack { width: auto; margin: 36px 0 8px; aspect-ratio: 35 / 28; }
+  .stack .w-main { width: 62%; inset-inline-start: 6%; top: 0; }
+  .stack .w-laptop { width: 80%; inset-inline-end: 2%; top: 20%; }
+  .stack .w-phone { width: 26%; inset-inline-start: 2%; bottom: 0; }
 }
 
 /* small phones: tighter section gaps; hero facts put the detail under the label instead of squeezing both into one row */
@@ -688,3 +688,11 @@ html::-webkit-scrollbar { display: none; }
 }
 .tool-info.open .tool-info-text { transform: none; }
 .tool-info-text.fade { opacity: 0; }
+
+/* phones: the hero fades only as its foot leaves the screen (motion.js --hp), without the slide down */
+@media (max-width: 760px) { .hero-grid { transform: none; } }
+
+/* phone frames: the screenshot overlaps the status bar by 1px, so no hairline shows where they meet */
+.phone > img { position: relative; margin-top: -1px; }
+/* the Domains form: its status bar is the form's own top ~3 pixel rows stretched tall, so the colours meet exactly */
+.phone.form .sb { background: url("../assets/img/xp-form.webp") center top / 100% 50000% no-repeat #2331ba; }
