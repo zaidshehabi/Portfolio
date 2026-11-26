@@ -107,6 +107,20 @@
     row.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') pick(); });
   });
 
+  // 6b. tools: a chip opens a small box under the list with a note about that tool; the same chip closes it
+  var info = document.querySelector('.tool-info'), infoText = info && info.querySelector('.tool-info-text');
+  if (info) document.querySelectorAll('.tools .tool').forEach(function (btn, i, all) {
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') !== 'true';
+      all.forEach(function (b) { b.setAttribute('aria-expanded', 'false'); });
+      if (!open) { info.classList.remove('open'); return; }
+      btn.setAttribute('aria-expanded', 'true');
+      var swap = function () { infoText.innerHTML = btn.nextElementSibling.innerHTML; infoText.classList.remove('fade'); };
+      if (info.classList.contains('open') && !reduce) { infoText.classList.add('fade'); setTimeout(swap, 140); } // already open: cross-fade the note
+      else { swap(); info.classList.add('open'); }
+    });
+  });
+
   // 7. hero: the windows lean towards the pointer a little
   var hero = document.getElementById('hero'), stack = hero && hero.querySelector('.stack');
   if (stack && !reduce && matchMedia('(pointer: fine)').matches) {
