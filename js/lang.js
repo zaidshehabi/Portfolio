@@ -20,22 +20,14 @@
   if (m) saved = m[1];
   if (saved === 'ar') setLang('ar'); else if (m) setLang('en');
 
-  // Phones: View Transitions snapshot the whole page and the moving address bar cancels them, which looks glitchy.
-  // There, a plain veil in the page colour fades in, the change happens under it, and it fades out. Shared with theme.js.
+  // Phones: View Transitions snapshot the whole page and the moving address bar cancels them, which looks glitchy,
+  // and a full-screen veil reads as a blank flash. There the change is instant, with every CSS transition held
+  // for two frames so all colours switch together. Shared with theme.js.
   var small = window.matchMedia('(max-width: 760px), (pointer: coarse)');
   function veil(colour, change) {
-    var v = document.createElement('div');
-    v.className = 'veil'; v.style.background = colour;
-    document.body.appendChild(v);
-    v.getBoundingClientRect(); // start from opacity 0
-    v.classList.add('on');
-    setTimeout(function () {
-      change();
-      requestAnimationFrame(function () { requestAnimationFrame(function () {
-        v.classList.add('out'); v.classList.remove('on');
-        setTimeout(function () { v.remove(); }, 380);
-      }); });
-    }, 170);
+    root.classList.add('swap');
+    change();
+    requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.remove('swap'); }); });
   }
   window.veilSwap = veil;
 

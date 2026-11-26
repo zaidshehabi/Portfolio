@@ -471,9 +471,12 @@ html.js [data-reveal="list"].in > li { opacity: 1; transform: none; }
 html.js [data-reveal="list"] > li:nth-child(2) { transition-delay: .07s; } html.js [data-reveal="list"] > li:nth-child(3) { transition-delay: .14s; }
 html.js [data-reveal="list"] > li:nth-child(4) { transition-delay: .21s; } html.js [data-reveal="list"] > li:nth-child(5) { transition-delay: .28s; }
 html.js [data-reveal="list"] > li:nth-child(6) { transition-delay: .35s; }
-html.js .timeline [data-reveal] { transform: translateX(calc(var(--dx, -1) * 48px)); }
+/* timeline: the dot stays on the rail, solid, and pops in; only the date and card slide in from the side */
+html.js .timeline [data-reveal] { opacity: 1; transform: none; }
+html.js .timeline [data-reveal]:not(.in) > :is(time, .t-body) { opacity: 0; transform: translateX(calc(var(--dx, -1) * 32px)); }
 html.js[dir="rtl"] .timeline [data-reveal] { --dx: 1; }
-html.js .timeline [data-reveal].in { transform: none; }
+html.js .timeline [data-reveal] > :is(time, .t-body) { transition: opacity .7s var(--ease), transform .8s var(--ease), border-color .3s; transition-delay: .08s; }
+html.js .timeline [data-reveal]:not(.in) .t-dot { transform: scale(.4); }
 html.js [data-reveal="deck"] { transform: translateY(50px); }
 
 @media (max-width: 1023px) {
@@ -501,7 +504,7 @@ html.js [data-reveal="deck"] { transform: translateY(50px); }
   .stack { margin-bottom: 6%; }
 }
 @media (prefers-reduced-motion: reduce) {
-  html.js [data-reveal], html.js [data-reveal] > li { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+  html.js [data-reveal], html.js [data-reveal] > li, html.js .timeline [data-reveal] > * { opacity: 1 !important; transform: none !important; clip-path: none !important; }
   .hero-grid { opacity: 1; transform: none; }
 }
 
@@ -619,10 +622,8 @@ html[data-theme="light"] .net { opacity: .7; }
   .tools li { font-size: 13px; padding: 7px 10px; }
 }
 
-/* phones: theme and language switch under a veil in the page colour (lang.js), no page snapshot */
-.veil { position: fixed; inset: 0; z-index: 200; pointer-events: none; opacity: 0; transition: opacity .17s ease-out; }
-.veil.on { opacity: 1; }
-.veil.out { transition: opacity .36s cubic-bezier(.2, .7, .2, 1); }
+/* phones: theme and language switch instantly, all colours at once (lang.js adds .swap for two frames) */
+html.swap *, html.swap *::before, html.swap *::after { transition: none !important; }
 @media (max-width: 760px) { .net { opacity: .55; } html[data-theme="light"] .net { opacity: .45; } }
 
 /* =================== v7: balanced headings, symmetric phone layout =================== */
@@ -640,3 +641,13 @@ p { text-wrap: pretty; }
   /* course numbers in three equal columns */
   .course-facts { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* no blue tap box on touch screens; the keyboard focus ring stays for keyboard users */
+html { -webkit-tap-highlight-color: transparent; }
+:focus:not(:focus-visible) { outline: none; }
+
+/* no visible scrollbar; the page still scrolls */
+html { scrollbar-width: none; }
+html::-webkit-scrollbar { display: none; }
+
+.t-dot { background: var(--bg-2); border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); color: color-mix(in srgb, var(--accent) 55%, var(--muted)); }
