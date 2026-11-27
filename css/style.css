@@ -699,3 +699,81 @@ html::-webkit-scrollbar { display: none; }
 /* small renders (the laptop hero) average the screenshot's top rows, so a hard join can still show a line:
    the form slides 6pt under the bar and its top edge fades in, so the two blend at any size */
 .phone.form > img { margin-top: calc(-6 * var(--pt)); -webkit-mask-image: linear-gradient(transparent, #000 calc(6 * var(--pt))); mask-image: linear-gradient(transparent, #000 calc(6 * var(--pt))); }
+
+/* =================== PREVIEW: centred layout below desktop (<1024px) that never flips; galactic language switch; theme icon flies to the centre =================== */
+@media (width < 1024px) {
+  /* the layout stays ltr in both languages (lang.js); every line is centred, Arabic still reads right-to-left inside its own spans */
+  main, footer { text-align: center; }
+  [data-lang="ar"] { direction: rtl; unicode-bidi: isolate; }
+  .section-head, .btns, .tools, .stack-icons { justify-content: center; }
+  .btns { display: flex; flex-wrap: wrap; }
+  .facts div { flex-direction: column; align-items: center; gap: 2px; }
+  .facts div > span { text-align: center; }
+  .lang-row { text-align: center; }
+}
+/* while the glyphs run, the galactic marks use a steady mono face so words keep a similar width */
+html.scrambling main, html.scrambling footer, html.scrambling .site-header { font-variant-ligatures: none; }
+
+/* the theme icon's flight to the centre of the screen (theme.js) */
+.tt-fly { position: fixed; z-index: 200; pointer-events: none; color: var(--ink); will-change: transform; }
+.tt-fly svg { width: 100%; height: 100%; display: block; }
+@media (width < 1024px) {
+  /* labels and the slide pager sit in the middle too */
+  .tag { align-self: center; }
+  .deck-dots { justify-content: center; }
+  /* centred headings open from the middle outwards, the same in both languages */
+  html.js [data-reveal="wipe"], html.js[dir="rtl"] [data-reveal="wipe"] { clip-path: inset(-25% 50% -25% 50%); }
+  html.js [data-reveal="wipe"].in { clip-path: inset(-25% -5% -25% -5%); }
+}
+@media (width < 1024px) {
+  /* tablets: the 3-up fact rows sit in the middle */
+  .facts, .course-facts { justify-content: center; }
+}
+@media (width < 1024px) {
+  /* text blocks with a max width sit in the middle, not at the start */
+  :is(.section-title, .section-lead, .hero-lead, .hero-text h1, .about-text p, .course-text p) { margin-inline: auto; }
+  /* the "freelance work" mark hugs its words, so its accent line sits beside them */
+  .status { width: fit-content; margin-inline: auto; }
+}
+@media (width < 1024px) {
+  main p, .deck { margin-inline: auto; }
+  .checks li { justify-content: center; }
+  footer .wrap { flex-direction: column; align-items: center; gap: 6px; }
+}
+@media (width < 1024px) { .deck { width: 100%; } }
+
+/* hero: two devices now, the Much More site on the laptop and the scout app (light mode) on the phone in front */
+.stack { aspect-ratio: 628 / 440; }
+.stack .w-laptop { inset-inline-end: 0; top: 2%; width: 90%; }
+.stack .w-phone { inset-inline-start: 0; bottom: -6%; width: 25%; }
+@media (width < 1024px) { .stack .w-phone { width: 26%; bottom: -3%; } }
+@media (max-width: 760px) {
+  .stack { aspect-ratio: 35 / 25; }
+  .stack .w-laptop { width: 88%; inset-inline-end: 0; top: 4%; }
+  .stack .w-phone { width: 27%; inset-inline-start: 1%; bottom: 0; }
+}
+/* a phone showing a light page: light Safari bar, dark address and home bar */
+.phone.light .safari { background: rgba(246, 246, 248, .96); }
+.phone.light .pill { background: rgba(118, 118, 128, .14); color: #000; }
+
+/* Much More card: text beside a laptop, like the XP card beside its phone */
+.project.mm { display: grid; grid-template-columns: 5fr 7fr; }
+.project.mm .project-body { justify-content: center; }
+.project-media.media-laptop {
+  display: grid; place-items: center; padding: 48px 40px 56px; min-height: 0; border-inline-start: 1px solid var(--line);
+  background: radial-gradient(70% 60% at 50% 45%, color-mix(in srgb, #c92e47 16%, transparent), transparent 70%), var(--surface);
+}
+.project-media.media-laptop .laptop { width: min(560px, 92%); }
+.project-media.media-laptop .lid img { height: auto; object-fit: initial; }
+.project:hover .project-media.media-laptop img { transform: none; }
+@media (width < 1024px) {
+  .project.mm { grid-template-columns: 1fr; }
+  .project-media.media-laptop { border-inline-start: 0; border-top: 1px solid var(--line); padding: 36px 24px 44px; }
+}
+
+/* course slide 1 is a box holding the picture and its live activity grid (contrib.js) */
+.deck .slide-live { overflow: hidden; }
+.slide-live > img { display: block; width: 100%; height: 100%; }
+.contrib { position: absolute; inset: 0; pointer-events: none; }
+.contrib i { position: absolute; border-radius: 3px; background: #151a21; transition: background-color .9s ease; }
+.contrib i.l1 { background: #033615; } .contrib i.l2 { background: #17622c; } .contrib i.l3 { background: #2a933e; } .contrib i.l4 { background: #3fbf55; }

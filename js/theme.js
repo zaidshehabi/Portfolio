@@ -1,10 +1,11 @@
-// Light / dark switch. Light is the default (data-theme="light" in the HTML); the choice is kept in localStorage "theme".
-// A circle opens from the button (View Transitions API), on desktop and phones alike; older browsers get the content dip.
+// PREVIEW: light / dark switch. The sun/moon icon flies to the middle of the screen, the new theme opens as a circle
+// from there, then the icon flies back into its button. Browsers without View Transitions get the content dip.
 (function () {
   var root = document.documentElement;
   var btn = document.getElementById('theme-toggle');
   if (!btn) return;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var EASE = 'cubic-bezier(.65, 0, .35, 1)';
 
   function label() {
     var light = root.dataset.theme === 'light';
@@ -13,62 +14,86 @@
   }
   function apply(light) {
     if (light) root.dataset.theme = 'light'; else delete root.dataset.theme;
-    var meta = document.querySelector('meta[name="theme-color"]'); // the phone's browser bar follows the theme
+    var meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.content = light ? '#f2f3f6' : '#0b0c0e';
     try { localStorage.setItem('theme', light ? 'light' : 'dark'); } catch (e) {}
     label();
     window.dispatchEvent(new Event('themechange'));
   }
   label();
-  // want: the theme the visitor last asked for; every tap flips it once, even mid-transition
-  var running = null, want = root.dataset.theme === 'light';
 
-  btn.addEventListener('click', function (ev) {
-    var light = want = !want;
-    if (running) { running.skipTransition(); return; } // the running one applies `want` when it finishes
-    if (reduce || document.hidden) return apply(light);
-    // browsers without View Transitions: the content dip (lang.js veilSwap); everyone else, phones too, gets the circle
-    if (!document.startViewTransition) {
-      if (!window.veilSwap) return apply(light);
-      window.veilSwap(light ? '#f2f3f6' : '#0b0c0e', function () { apply(light); });
-      return;
-    }
-    // always from the centre of the sun/moon icon, not where the finger or pointer landed
-    var r = (btn.querySelector('svg') || btn).getBoundingClientRect();
-    var x = r.left + r.width / 2, y = r.top + r.height / 2;
-    // the transition is drawn on the whole screen, address bar area included (100lvh tall). Chrome on Android keeps its
-    // bar at the top, so the page sits below it: move the centre down by the bar. iOS Safari keeps its bar at the bottom.
+  // how tall the transition's screen is (address bar area included) and where the page sits in it
+  function screenBox() {
     var ios = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    var screenH = innerHeight;
+    var h = innerHeight, shift = 0;
     if (window.CSS && CSS.supports('height', '100lvh')) {
       var probe = document.createElement('div');
       probe.style.cssText = 'position:fixed;top:0;height:100lvh;width:0;visibility:hidden;pointer-events:none';
       document.body.appendChild(probe);
-      screenH = Math.max(innerHeight, probe.getBoundingClientRect().height);
+      h = Math.max(innerHeight, probe.getBoundingClientRect().height);
       probe.remove();
-      if (!ios) y += screenH - innerHeight;
+      if (!ios) shift = h - innerHeight;
     }
-    // grow 30% past the farthest corner: the corners are covered while the edge still moves fast, and the slow end of
-    // the curve happens off screen (ending exactly on the corner made the bottom crawl and then pop)
-    var end = 1.3 * Math.hypot(Math.max(x, innerWidth - x), Math.max(y, screenH - y));
-    // keep the circle light: the background graph pauses and CSS colour transitions are held (html.swap) while it runs
-    var t = document.startViewTransition(function () { root.classList.add('swap'); apply(want); });
-    running = t;
-    window.dispatchEvent(new Event('themeswitchstart'));
-    t.updateCallbackDone.catch(function () {});
-    t.finished.catch(function () {}).finally(function () {
-      if (running === t) running = null;
+    return { h: h, shift: shift };
+  }
+
+  var busy = false, want = root.dataset.theme === 'light';
+
+  btn.addEventListener('click', function () {
+    want = !want;
+    if (busy) return; // the running switch applies `want` when it ends
+    if (reduce || document.hidden) return apply(want);
+    if (!document.startViewTransition) {
+      if (!window.veilSwap) return apply(want);
+      return window.veilSwap('', function () { apply(want); });
+    }
+    busy = true;
+
+    var icon = btn.querySelector('svg');
+    var r = icon.getBoundingClientRect();
+    var SCALE = 3.2;
+    var cx = innerWidth / 2, cy = innerHeight / 2;
+    var dx = cx - (r.left + r.width / 2), dy = cy - (r.top + r.height / 2);
+
+    // a copy of the icon flies; the button's own icon waits invisible
+    var fly = document.createElement('div');
+    fly.className = 'tt-fly';
+    fly.style.cssText = 'left:' + r.left + 'px;top:' + r.top + 'px;width:' + r.width + 'px;height:' + r.height + 'px';
+    var copy = icon.cloneNode(true);
+    copy.querySelector('mask').id = 'tt-cut-fly';
+    copy.querySelector('.tt-core').setAttribute('mask', 'url(#tt-cut-fly)');
+    fly.appendChild(copy);
+    document.body.appendChild(fly);
+    icon.style.opacity = '0';
+
+    var there = 'translate(' + dx + 'px,' + dy + 'px) scale(' + SCALE + ')';
+    if (window.netSpeed) netSpeed(0, 480); // the background slows to a stop while the icon flies in
+    var go = fly.animate([{ transform: 'none' }, { transform: there }], { duration: 480, easing: EASE, fill: 'forwards' });
+
+    go.finished.then(function () {
+      var box = screenBox();
+      var x = cx, y = cy + box.shift;
+      var end = 1.3 * Math.hypot(innerWidth / 2, box.h / 2);
+      var start = r.width * SCALE / 2 + 4;
+      var t = document.startViewTransition(function () { root.classList.add('swap'); apply(want); });
+      t.updateCallbackDone.catch(function () {});
+      t.ready.then(function () {
+        root.animate(
+          { clipPath: ['circle(' + start + 'px at ' + x + 'px ' + y + 'px)', 'circle(' + Math.ceil(end) + 'px at ' + x + 'px ' + y + 'px)'] },
+          { duration: 750, easing: 'cubic-bezier(.45, .05, .25, 1)', pseudoElement: '::view-transition-new(root)' }
+        );
+      }).catch(function () {});
+      return t.finished.catch(function () {});
+    }).then(function () {
       root.classList.remove('swap');
-      window.dispatchEvent(new Event('themeswitchend'));
-      if ((root.dataset.theme === 'light') !== want) apply(want); // a tap during the circle, or a cancelled transition
+      if ((root.dataset.theme === 'light') !== want) apply(want);
+      if (window.netSpeed) netSpeed(1, 800); // ...and eases back to its drift as the icon flies home
+      // a short beat in the middle, then home
+      return fly.animate([{ transform: there }, { transform: 'none' }], { duration: 480, delay: 120, easing: EASE, fill: 'forwards' }).finished;
+    }).then(function () {
+      icon.style.opacity = '';
+      fly.remove();
+      busy = false;
     });
-    t.ready.then(function () {
-      // starts at the icon's own size (instant feedback under the finger) and grows on an even curve:
-      // a steep ease-out jumps most of the way in the first frames, which shows as a stutter on phones
-      root.animate(
-        { clipPath: ['circle(' + Math.round(r.width / 2 + 6) + 'px at ' + x + 'px ' + y + 'px)', 'circle(' + Math.ceil(end) + 'px at ' + x + 'px ' + y + 'px)'] },
-        { duration: 700, easing: 'cubic-bezier(.45, .05, .25, 1)', pseudoElement: '::view-transition-new(root)' }
-      );
-    }).catch(function () {});
   });
 })();

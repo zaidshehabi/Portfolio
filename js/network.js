@@ -9,6 +9,9 @@
   var W = 0, H = 0, dpr = 1, nodes = [], packets = [], ripples = [], link = 150, raf = 0, running = false;
   var ptr = { x: -9999, y: -9999, on: false, glow: 0 }, lastY = window.scrollY;
   var R = 170; // pointer reach
+  // speed: 1 is the normal drift, 0 is still. window.netSpeed(to, ms) eases it there (theme.js slows the graph to a
+  // stop before the light/dark circle and eases it back after); at a full stop the loop rests until asked to move
+  var speed = 1, sFrom = 1, sTo = 1, sT0 = 0, sDur = 0;
   // touch screens: the finger drives it, also while scrolling
   // phones get a calmer graph: fewer nodes and packets, a gentle touch, no wandering ghost
   var coarse = window.matchMedia('(pointer: coarse)').matches, touching = false, touchTimer = 0, calm = false;
@@ -72,12 +75,12 @@
         if (ed > .1 && Math.abs(ed - rp.r) < 26) { var g = (calm ? 1 : 2.2) * (1 - rp.r / rp.max); n.vx += ex / ed * g; n.vy += ey / ed * g; n.heat = 1; }
       }
       n.vx = n.vx * .93 + n.bvx * .07; n.vy = n.vy * .93 + n.bvy * .07; // ease back to the slow drift
-      n.x += n.vx; n.y += n.vy; n.heat *= .965;
+      n.x += n.vx * speed; n.y += n.vy * speed; n.heat *= 1 - .035 * speed;
       if (n.x < -30) n.x = W + 30; else if (n.x > W + 30) n.x = -30;
       if (n.y < -30) n.y = H + 30; else if (n.y > H + 30) n.y = -30;
     }
-    for (var r = ripples.length - 1; r >= 0; r--) { ripples[r].r += 7; if (ripples[r].r > ripples[r].max) ripples.splice(r, 1); }
-    if (packets.length < (calm ? 5 : 16) && Math.random() < (calm ? .04 : .08)) spawnFrom(nodes[(Math.random() * nodes.length) | 0]);
+    for (var r = ripples.length - 1; r >= 0; r--) { ripples[r].r += 7 * speed; if (ripples[r].r > ripples[r].max) ripples.splice(r, 1); }
+    if (packets.length < (calm ? 5 : 16) && Math.random() < (calm ? .04 : .08) * speed) spawnFrom(nodes[(Math.random() * nodes.length) | 0]);
   }
 
   function draw() {
@@ -118,7 +121,7 @@
     }
     for (var k = packets.length - 1; k >= 0; k--) {
       var pk = packets[k];
-      pk.t += running ? pk.speed : 0;
+      pk.t += running ? pk.speed * speed : 0;
       if (pk.t >= 1 || Math.hypot(pk.a.x - pk.b.x, pk.a.y - pk.b.y) > link * 1.2) {
         if (pk.t >= 1 && pk.burst > 0) { var len = packets.length; spawnFrom(pk.b); if (packets.length > len) packets[len].burst = pk.burst - 1; } // a click's packets hop on
         packets.splice(k, 1); continue;
@@ -130,7 +133,17 @@
     }
   }
 
-  function loop() { step(); draw(); raf = requestAnimationFrame(loop); }
+  function ease(p) { return p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2; }
+  function loop(now) {
+    if (sDur) { var p = Math.min(1, (now - sT0) / sDur); speed = sFrom + (sTo - sFrom) * ease(p); if (p === 1) sDur = 0; }
+    step(); draw();
+    if (!sDur && sTo === 0) { running = false; return; } // fully still: rest until netSpeed asks for motion again
+    raf = requestAnimationFrame(loop);
+  }
+  window.netSpeed = function (to, ms) {
+    sFrom = speed; sTo = to; sT0 = performance.now(); sDur = Math.max(1, ms || 0);
+    if (to > 0 || speed > 0) start();
+  };
   function start() { if (!running && !reduce && !document.hidden) { running = true; raf = requestAnimationFrame(loop); } }
   function stop() { running = false; cancelAnimationFrame(raf); }
 
@@ -165,7 +178,7 @@
     }, 150);
   });
   window.addEventListener('themechange', function () { draw(); }); // the new colours show at once, also inside the paused circle
-  document.addEventListener('visibilitychange', function () { document.hidden ? stop() : start(); });
+  document.addEventListener('visibilitychange', function () { document.hidden ? stop() : (sTo > 0 && start()); });
   // hold still during the light/dark circle, so the browser only has to grow the circle (theme.js)
   window.addEventListener('themeswitchstart', stop);
   window.addEventListener('themeswitchend', function () { draw(); start(); });
